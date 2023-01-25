@@ -1,0 +1,26 @@
+.navContainer{
+    background-color: black;
+    color: white;
+    margin: 0 50px;
+    padding: 10px 50px;
+    border-radius: 0 0 10px 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navTitle{
+    font-size: 25px;
+}
+
+.navContainer button{
+    background-color: black;
+    color: white;
+    padding: 5px 25px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    border: 2px solid white;
+    border-radius: 5px;
+    cursor: pointer;
+}

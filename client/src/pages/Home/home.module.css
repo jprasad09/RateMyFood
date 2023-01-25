@@ -1,0 +1,31 @@
+.secContainer{
+    display: flex;
+    flex-direction: column;
+    row-gap: 50px;
+    justify-content: space-between;
+    align-items: center;
+    margin: 150px 0;
+}
+
+.secContainer h1{
+    font-size: 50px;
+}
+
+.buttonContainer{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    column-gap: 100px;
+}
+
+.buttonContainer button{
+    background-color: black;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    border: 2px solid white;
+    border-radius: 5px;
+    cursor: pointer;
+}
