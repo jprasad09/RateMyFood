@@ -10,10 +10,10 @@ const Home = () => {
       <section className={styles.secContainer}>
         <h1>Foodies Welcome Here.</h1>
         <div className={styles.buttonContainer}>
-          <Link to="/register">
+          <Link to="/register/user">     
             <button>Register as User</button>
           </Link>
-          <Link to="/register">
+          <Link to="/register/restaurant">
             <button>Register as Restaurant</button>
           </Link>
         </div>
