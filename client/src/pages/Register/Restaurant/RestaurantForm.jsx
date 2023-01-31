@@ -1,12 +1,17 @@
 import { useState } from 'react'
 import styles from './restaurantForm.module.css'
 import FormInput from '../../../components/Form/FormInput/FormInput'
+import axios from '../../../api/axios'
+import { useNavigate } from 'react-router-dom'
 
 const RestaurantForm = () => {
+
+  const navigate = useNavigate()
+
   const [values, setValues] = useState({
     name: "",
     email: "",
-    phone: "",
+    phone_no: "",
     address: "",
     password: "",
     confirmPassword: "",
@@ -33,7 +38,7 @@ const RestaurantForm = () => {
     },
     {
       id: 3,
-      name: "phone",
+      name: "phone_no",
       type: "text",
       placeholder: "Phone",
       errorMessage: "Please enter a valid 10 digit phone no.",
@@ -73,8 +78,32 @@ const RestaurantForm = () => {
     },
   ];
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
+
+    try{
+      const response = await axios.post('/restaurants', 
+        JSON.stringify(values),
+        {
+          headers: { 'Content-Type': 'application/json'},
+        })
+      setValues({
+        name: "",
+        email: "",
+        phone: "",
+        address: "",
+        password: "",
+        confirmPassword: "",
+      })
+
+      window.alert("Registration Successful!")
+
+      navigate('/login')
+  
+    }catch(error){
+      window.alert("Error")
+    }
+
   };
 
   const onChange = (e) => {

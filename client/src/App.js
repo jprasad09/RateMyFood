@@ -4,10 +4,12 @@ import UserForm from './pages/Register/User/UserForm'
 import RestaurantForm from './pages/Register/Restaurant/RestaurantForm'
 import Login from './pages/Login/Login'
 import Restaurant from './pages/Restaurant/Restaurant'
+import Navbar from "./components/Home/Navbar/Navbar"
 
 function App() {
   return (
     <Router>
+      <Navbar />
       <Routes>
         <Route exact path="/" element={<Home />} />
         <Route exact path="/register/user" element={<UserForm />} />

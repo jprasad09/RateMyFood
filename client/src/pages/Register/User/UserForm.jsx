@@ -1,15 +1,20 @@
 import { useState } from 'react'
 import styles from './userForm.module.css'
 import FormInput from '../../../components/Form/FormInput/FormInput'
+import axios from '../../../api/axios'
+import { useNavigate } from 'react-router-dom'
 
 const UserForm = () => {
+
+  const navigate = useNavigate()
+
   const [values, setValues] = useState({
     username: "",
     name: "",
     email: "",
-    phone: "",
+    phone_no: "",
     address: "",
-    birthday: "",
+    dob: "",
     password: "",
     confirmPassword: "",
   });
@@ -20,10 +25,8 @@ const UserForm = () => {
       name: "username",
       type: "text",
       placeholder: "Username",
-      errorMessage:
-        "Username should be 3-16 characters and shouldn't include any special character!",
+      errorMessage: "Username is required",
       label: "Username",
-      pattern: "^[A-Za-z0-9]{3,16}$",
       required: true,
     },
     {
@@ -46,7 +49,7 @@ const UserForm = () => {
     },
     {
       id: 4,
-      name: "phone",
+      name: "phone_no",
       type: "text",
       placeholder: "Phone",
       errorMessage: "Please enter a valid 10 digit phone no.",
@@ -65,10 +68,10 @@ const UserForm = () => {
     },
     {
       id: 6,
-      name: "birthday",
+      name: "dob",
       type: "date",
-      placeholder: "Birthday",
-      label: "Birthday",
+      placeholder: "DOB",
+      label: "DOB",
     },
     {
       id: 7,
@@ -93,13 +96,38 @@ const UserForm = () => {
     },
   ];
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
-  };
+
+    try{
+      const response = await axios.post('/users', 
+        JSON.stringify(values),
+        {
+          headers: { 'Content-Type': 'application/json'},
+        })
+      setValues({
+        username: "",
+        name: "",
+        email: "",
+        phone: "",
+        address: "",
+        birthday: "",
+        password: "",
+        confirmPassword: "",
+      })
+
+      window.alert("Registration Successful!")
+
+      navigate('/login')
+  
+    }catch(error){
+      window.alert("Error")
+    }
+  }
 
   const onChange = (e) => {
     setValues({ ...values, [e.target.name]: e.target.value });
-  };
+  }
 
   return (
     <div className={styles.userFormContainer}>
