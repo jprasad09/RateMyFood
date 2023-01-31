@@ -1,5 +1,6 @@
 const Restaurant = require('../models/restaurantModel')
 const mongoose = require('mongoose')
+const bcrypt = require('bcryptjs')
 
 // get all restaurants
 const getRestaurants = async (req, res) => {
@@ -46,19 +47,27 @@ const createRestaurant = async (req, res) => {
   if (!address) {
     emptyFields.push('address')
   }
-  if (!images) {
-    emptyFields.push('images')
-  }
-  if (!cuisine) {
-    emptyFields.push('cuisine')
-  }
+  // if (!images) {
+  //   emptyFields.push('images')
+  // }
+  // if (!cuisine) {
+  //   emptyFields.push('cuisine')
+  // }
   if (emptyFields.length > 0) {
     return res.status(400).json({ error: 'Please fill in all fields', emptyFields })
   }
 
   // add to the database
   try {
-    const restaurant = await Restaurant.create({ email, password, name, phone_no, address, images, cuisine })
+    const restaurantExist = await Restaurant.findOne({ email: email })
+    if(restaurantExist){
+        return res.status(422).json({ error: "Email already exists" })
+    }
+
+    const salt = await bcrypt.genSalt(10)
+    const hashPass = await bcrypt.hash(password, salt)
+
+    const restaurant = await Restaurant.create({ email, password:hashPass, name, phone_no, address, images, cuisine })
     res.status(200).json(restaurant)
   } catch (error) {
     res.status(400).json({ error: error.message })

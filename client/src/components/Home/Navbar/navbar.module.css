@@ -13,6 +13,11 @@
     font-size: 25px;
 }
 
+.navTitle a{
+    text-decoration: none;
+    color: white;
+}
+
 .navContainer button{
     background-color: black;
     color: white;

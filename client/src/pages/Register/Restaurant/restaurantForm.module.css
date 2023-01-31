@@ -1,29 +1,35 @@
-.loginContainer{
+.restaurantFormContainer{
     display: flex;
     align-items: center;
     justify-content: center;
 }
   
-.loginContainer form{
+.restaurantFormContainer form{
     margin: 20px 5rem;
     padding: 30px 60px 0px;
     border: 2px solid black;
+    border-radius: 10px;
     display: flex;
     flex-direction: column;
+    align-items: center;
     justify-content: center;
-    width: 35%;
-    background-color: white;
-    padding: 30px 60px 0px;
-    border-radius: 10px;
+}
+
+.restaurantFormContainer form div{
+    display: flex;
+    justify-content: center;
+    align-self: flex-start;
+    flex-wrap: wrap;
+    width: 100%;
 }
   
-.loginContainer h1{
+.restaurantFormContainer h1{
     margin-bottom: 20px;
     color: black;
     text-align: center;
 }
   
-.loginContainer button{
+.restaurantFormContainer button{
     height: 50px;
     padding: 10px 50px;
     border: none;
