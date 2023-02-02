@@ -21,6 +21,7 @@
 .navContainer button{
     background-color: black;
     color: white;
+    margin: 0 5px;
     padding: 5px 25px;
     text-align: center;
     text-decoration: none;
