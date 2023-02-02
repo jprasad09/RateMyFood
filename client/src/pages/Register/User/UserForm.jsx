@@ -3,6 +3,7 @@ import styles from './userForm.module.css'
 import FormInput from '../../../components/Form/FormInput/FormInput'
 import axios from '../../../api/axios'
 import { useNavigate } from 'react-router-dom'
+import Navbar from '../../../components/Home/Navbar/Navbar'
 
 const UserForm = () => {
 
@@ -118,7 +119,7 @@ const UserForm = () => {
 
       window.alert("Registration Successful!")
 
-      navigate('/login')
+      navigate('/signin')
   
     }catch(error){
       window.alert("Error")
@@ -130,23 +131,26 @@ const UserForm = () => {
   }
 
   return (
-    <div className={styles.userFormContainer}>
-      <form onSubmit={handleSubmit}>
-        <h1>Register</h1>
-        <div>
-          {inputs.map((input) => (
-            <FormInput
-              key={input.id}
-              {...input}
-              value={values[input.name]}
-              onChange={onChange}
-            />
-          ))}
-        </div>
-        <button>Submit</button>
-      </form>
-    </div>
-  );
+    <>
+      <Navbar />
+      <div className={styles.userFormContainer}>
+        <form onSubmit={handleSubmit}>
+          <h1>Register</h1>
+          <div>
+            {inputs.map((input) => (
+              <FormInput
+                key={input.id}
+                {...input}
+                value={values[input.name]}
+                onChange={onChange}
+              />
+            ))}
+          </div>
+          <button>Submit</button>
+        </form>
+      </div>
+    </>
+  )
 };
 
 export default UserForm

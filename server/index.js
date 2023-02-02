@@ -9,27 +9,27 @@ const userRoutes = require('./routes/user')
 const restaurantRoutes = require('./routes/restaurant')
 const reviewRoutes = require('./routes/review')
 const commentRoutes = require('./routes/comment')
-const signinRoute = require('./routes/signin')
+const authRoutes = require('./routes/auth')
 
 // express app
 const app = express()
 
 // middleware
-app.use(cors())
-app.use(express.json())
+const corsOptions ={
+  origin:'http://localhost:3000', 
+  credentials:true,            //access-control-allow-credentials:true
+  optionSuccessStatus:200
+}
+app.use(cors(corsOptions))
 app.use(cookieParser())
-
-app.use((req, res, next) => {
-  console.log(req.path, req.method)
-  next()
-})
+app.use(express.json())
 
 // routes
 app.use('/api/users', userRoutes)
 app.use('/api/restaurants', restaurantRoutes)
 app.use('/api/reviews', reviewRoutes)
 app.use('/api/comments', commentRoutes)
-app.use('/api/signin', signinRoute)
+app.use('/api/auth', authRoutes)
 
 // connect to db
 mongoose.connect(process.env.MONGO_URI)

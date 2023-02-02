@@ -1,1 +1,1 @@
-//export * from './register.action';
+export * from './auth.action'
