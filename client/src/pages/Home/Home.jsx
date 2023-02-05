@@ -3,11 +3,15 @@ import styles from "./home.module.css"
 import { Link } from 'react-router-dom'
 import axios from '../../api/axios'
 import Navbar from '../../components/Home/Navbar/Navbar'
+import Cookies from 'universal-cookie'
 
 const Home = () => {
-
+  
   const [ access, setAccess ] = useState(false)
   const [ user, setUser ] = useState({})
+
+  const cookies = new Cookies()
+  const token = cookies.get('token')
 
   const callHomePage = async() => {
     try{
@@ -15,9 +19,9 @@ const Home = () => {
         {
           headers: { 
             'Accept' : 'application/json',
-            'Content-Type' : 'application/json'
-          },
-          withCredentials: true
+            'Content-Type' : 'application/json',
+            'Authorization' : `Bearer ${token}`
+          }
         })
 
       setAccess(true)

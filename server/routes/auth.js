@@ -49,11 +49,6 @@ router.post('/signin', async (req,res) => {
 
 })
 
-router.get('/signout', (req,res) => {
-    res.clearCookie('token', {path: '/'})
-    res.send('User logout')
-})
-
 router.get('/restaurant', authenticate, (req,res) => {
     res.send(req.user)
 })
