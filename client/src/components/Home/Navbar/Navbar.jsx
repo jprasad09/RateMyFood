@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react"
 import styles from "./navbar.module.css"
 import { NavLink, useNavigate } from 'react-router-dom'
-import axios from '../../../api/axios'
 import Cookies from 'universal-cookie'
 
 const Navbar = ({ user }) => {
@@ -17,23 +16,11 @@ const Navbar = ({ user }) => {
 
   const navigate = useNavigate()
 
-  const logout = async() => {
+  const logout = () => {
     try{
-      const response = await axios.get('/auth/signout', 
-        {
-          headers: { 
-            'Accept' : 'application/json',
-            'Content-Type' : 'application/json'
-          },
-          withCredentials: true
-        })
-      
+      cookies.remove('token')
       navigate('/signin')
 
-      if(response.status !== 200){
-        const error = new Error(response.error)
-        throw error 
-      }
     }catch(error){
       console.log(error)
     }
