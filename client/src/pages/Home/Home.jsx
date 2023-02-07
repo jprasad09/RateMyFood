@@ -4,11 +4,16 @@ import { Link } from 'react-router-dom'
 import axios from '../../api/axios'
 import Navbar from '../../components/Home/Navbar/Navbar'
 import Cookies from 'universal-cookie'
+import SearchBar from '../../components/Home/SearchBar/SearchBar'
+import { useSelector } from 'react-redux'
+import RestaurantCard from '../../components/Restaurant/RestaurantCard/RestaurantCard'
 
 const Home = () => {
   
   const [ access, setAccess ] = useState(false)
   const [ user, setUser ] = useState({})
+
+  const restaurantsAfterSearch = useSelector(state => state.restaurant.restaurantsAfterSearch)
 
   const cookies = new Cookies()
   const token = cookies.get('token')
@@ -46,7 +51,18 @@ const Home = () => {
       <section className={styles.secContainer}>
         {access? 
         <>
-          <h1>Welcome {user.name}</h1>
+          <SearchBar />
+          {restaurantsAfterSearch && restaurantsAfterSearch.length ? 
+            <div className={styles.restaurantsAfterSearchContainer}>
+              {
+                restaurantsAfterSearch.map((restaurant, k) => {
+                    return (
+                      <RestaurantCard key={restaurant._id} restaurant={restaurant}/>
+                    )
+                })
+              }
+            </div> : null
+          }
         </>:      
         <>
           <h1>Foodies Welcome Here.</h1>

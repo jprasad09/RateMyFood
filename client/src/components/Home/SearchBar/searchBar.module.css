@@ -1,0 +1,24 @@
+.searchBarContainer{
+    display: flex;
+    min-width: 500px;
+}
+
+.searchBarInput{
+    width: 100%;
+    padding: 15px;
+    border-radius: 5px;
+    border: 1px solid gray;
+}
+
+.searchBarButton{
+    background-color: black;
+    color: white;
+    margin: 0 5px;
+    padding: 5px 25px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    border: 2px solid white;
+    border-radius: 5px;
+    cursor: pointer;
+}
