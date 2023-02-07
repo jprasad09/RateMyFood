@@ -4,11 +4,21 @@
     row-gap: 50px;
     justify-content: space-between;
     align-items: center;
-    margin: 150px 0;
+    margin: 100px 0;
 }
 
 .secContainer h1{
     font-size: 50px;
+}
+
+.restaurantsAfterSearchContainer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    row-gap: 40px;
+    column-gap: 20px;
 }
 
 .buttonContainer{
