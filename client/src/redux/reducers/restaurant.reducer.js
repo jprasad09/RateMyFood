@@ -3,7 +3,10 @@ import { restaurantConstants } from "../constants"
 const initState = {
     restaurantsAfterSearch: {},
     restaurantsAfterSearchLoading: false,
-    restaurantsAfterSearchError: null
+    restaurantsAfterSearchError: null,
+    singleRestaurantById: {},
+    singleRestaurantByIdLoading: false,
+    singleRestaurantByIdError: null
 }
  
 export default (state = initState, action) => {
@@ -11,7 +14,7 @@ export default (state = initState, action) => {
         case restaurantConstants.GET_RESTAURANTS_AFTER_SEARCH_REQUEST:
             state = {
                 ...initState,
-                loading: true
+                restaurantsAfterSearchLoading: true
             }
             break;
 
@@ -19,17 +22,44 @@ export default (state = initState, action) => {
             state = {
                 ...state,
                 restaurantsAfterSearch: action.payload,
-                loading: false
+                restaurantsAfterSearchLoading: false
             }
             break;
 
         case restaurantConstants.GET_RESTAURANTS_AFTER_SEARCH_FAILURE:
             state = {
                 ...initState,
-                loading: false,
+                restaurantsAfterSearchLoading: false,
                 restaurantsAfterSearchError: action.payload
             }
             break;
+
+        case restaurantConstants.GET_SINGLE_RESTAURANT_BY_ID_REQUEST:
+            state = {
+                ...initState,
+                singleRestaurantByIdLoading: true
+            }
+            break;
+
+        case restaurantConstants.GET_SINGLE_RESTAURANT_BY_ID_SUCCESS:
+            state = {
+                ...state,
+                singleRestaurantById: action.payload,
+                singleRestaurantByIdLoading: false
+            }
+            break;
+
+        case restaurantConstants.GET_SINGLE_RESTAURANT_BY_ID_FAILURE:
+            state = {
+                ...initState,
+                singleRestaurantByIdLoading: false,
+                singleRestaurantByIdError: action.payload
+            }
+            break;
+
+        default:
+            break
+        
     }
 
     return state;
