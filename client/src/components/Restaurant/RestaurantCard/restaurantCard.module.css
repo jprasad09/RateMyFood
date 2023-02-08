@@ -6,6 +6,7 @@
     width: 300px;
     border-radius: 10px;
     transition: transform .5s ease;
+    cursor: pointer;
 }
 .restaurantCardContainer:hover{
     transform: scale(1.03);

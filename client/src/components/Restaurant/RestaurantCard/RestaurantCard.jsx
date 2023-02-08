@@ -1,10 +1,22 @@
 import React from 'react'
 import styles from './restaurantCard.module.css'
 import RestaurantImg from '../../../images/restaurant.jpg'
+import { getSingleRestaurantById } from '../../../redux/actions/restaurant.action'
+import { useDispatch } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 
 const RestaurantCard = ({ restaurant }) => {
+
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+
+  const getRestaurant = () => {
+    dispatch(getSingleRestaurantById(restaurant._id))
+    navigate(`/restaurant/${restaurant._id}`)
+  }
+
   return (
-    <div className={styles.restaurantCardContainer}>
+    <div onClick={getRestaurant} className={styles.restaurantCardContainer}>
 
       <div className={styles.restaurantCardImgSection}>
           <img src={RestaurantImg} alt="RestaurantImg" className={styles.restaurantCardImg}/>
