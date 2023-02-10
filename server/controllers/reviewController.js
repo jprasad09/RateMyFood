@@ -49,8 +49,8 @@ const createReview = async (req, res) => {
 
   // add to the database
   try {
-    const review = await Review.create({ user_id, restaurant_id, review, images, rating })
-    res.status(200).json(review)
+    const reviewRes = await Review.create({ user_id, restaurant_id, review, images, rating })
+    res.status(200).json(reviewRes)
   } catch (error) {
     res.status(400).json({ error: error.message })
   }

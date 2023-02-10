@@ -1,15 +1,20 @@
 import React, { useState, useEffect} from 'react'
+import styles from './restaurant.module.css'
 import axios from '../../api/axios'
 import { useNavigate, useParams } from 'react-router-dom'
 import Navbar from '../../components/Home/Navbar/Navbar'
 import Cookies from 'universal-cookie'
 import { getSingleRestaurantById } from '../../redux/actions/restaurant.action'
 import { useDispatch, useSelector } from 'react-redux'
+import RestaurantInfoSection from '../../components/Restaurant/RestaurantInfoSection/RestaurantInfoSection'
+import ReviewsSection from '../../components/Restaurant/ReviewsSection/ReviewsSection'
+import ReviewFormModal from '../../components/Review/ReviewFormModal/ReviewFormModal'
 
 const Restaurant = () => {
 
   const [ user, setUser ] = useState({})
   const restaurant = useSelector(state => state.restaurant.singleRestaurantById)
+  const showModal = useSelector(state => state.review.showReviewFormModal)
 
   const cookies = new Cookies()
   const token = cookies.get('token')
@@ -46,9 +51,15 @@ const Restaurant = () => {
   }, [])
 
   return (
-    <>
-      <Navbar user={user}/>
-      <div>{restaurant?.name}</div>
+    <>{showModal ? <ReviewFormModal restaurant={restaurant}/> :
+      <>
+        <Navbar user={user}/>
+        <main className={styles.restaurantPageContainer}>
+          <RestaurantInfoSection restaurant={restaurant}/>
+          <ReviewsSection />
+        </main>
+      </>
+      }
     </>
   )
 }
