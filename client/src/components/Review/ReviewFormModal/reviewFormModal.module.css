@@ -1,0 +1,61 @@
+.reviewFormModalBackground{
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(200, 200, 200);
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.reviewFormModalContainer{
+    width: 500px;
+    height: 500px;
+    border-radius: 12px;
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    display: flex;
+    flex-direction: column;
+    padding: 25px;
+    justify-content: center;
+    align-items: center;
+}
+
+.reviewFormModalCloseArrow{
+    align-self: flex-end;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.reviewFormModalCloseArrow button{
+    background-color: transparent;
+    border: none;
+    font-size: 25px;
+    cursor: pointer;
+}
+
+.reviewFormModalFormContainer{
+    display: flex;
+    flex-direction: column;
+    width: 75%;
+}
+
+.reviewFormModalFormContainer h1{
+    text-align: center;
+    margin: 20px 0;
+}
+
+.reviewFormModalFormContainer button{
+    align-self: center;
+    height: 50px;
+    padding: 10px 50px;
+    border: none;
+    background-color: black;
+    color: white;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 18px;
+    cursor: pointer;
+    margin-top: 15px;
+    margin-bottom: 30px;
+}

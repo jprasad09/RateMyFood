@@ -1,0 +1,42 @@
+.restaurantInfoSectionContainer{
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+}
+
+.restaurantImgContainer{
+    height: 400px;
+    width: 100%;
+}
+
+.restaurantImg{
+    height: 100%;
+    width: 100%;
+    border-radius: 5px;
+}
+
+.restaurantInfoContainer{
+    display: flex;
+    justify-content: space-between;
+}
+
+.restaurantInfoContainer h1{
+    font-size: 40px;
+}
+
+.restaurantInfoContainer p{
+    font-size: 25px;
+}
+
+.AddReviewBtn{
+    background-color: black;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 18px;
+    border: 2px solid white;
+    border-radius: 5px;
+    cursor: pointer;
+    height: 60px;
+}
