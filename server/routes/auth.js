@@ -49,6 +49,10 @@ router.post('/signin', async (req,res) => {
 
 })
 
+router.get('/review', authenticate, (req,res) => {
+    res.send(req.user)
+})
+
 router.get('/restaurant', authenticate, (req,res) => {
     res.send(req.user)
 })

@@ -5,7 +5,8 @@ const Schema = mongoose.Schema
 const reviewSchema = new Schema({
   user_id: {
     type: Schema.Types.ObjectId,
-    required: true
+    required: true,
+    ref: 'User',
   },
   restaurant_id: {
     type: Schema.Types.ObjectId,

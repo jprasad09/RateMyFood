@@ -9,12 +9,14 @@ import { useDispatch, useSelector } from 'react-redux'
 import RestaurantInfoSection from '../../components/Restaurant/RestaurantInfoSection/RestaurantInfoSection'
 import ReviewsSection from '../../components/Restaurant/ReviewsSection/ReviewsSection'
 import ReviewFormModal from '../../components/Review/ReviewFormModal/ReviewFormModal'
+import { getReviewsByRestaurantId } from '../../redux/actions/review.action'
 
 const Restaurant = () => {
 
   const [ user, setUser ] = useState({})
   const restaurant = useSelector(state => state.restaurant.singleRestaurantById)
   const showModal = useSelector(state => state.review.showReviewFormModal)
+  const reviews = useSelector(state => state.review.reviewsByRestaurantId)
 
   const cookies = new Cookies()
   const token = cookies.get('token')
@@ -48,15 +50,16 @@ const Restaurant = () => {
   useEffect(() => {
     callRestaurantPage()
     dispatch(getSingleRestaurantById(id))
+    dispatch(getReviewsByRestaurantId(id))
   }, [])
 
   return (
-    <>{showModal ? <ReviewFormModal restaurant={restaurant}/> :
+    <>{showModal ? <ReviewFormModal user={user} restaurant={restaurant}/> :
       <>
         <Navbar user={user}/>
         <main className={styles.restaurantPageContainer}>
           <RestaurantInfoSection restaurant={restaurant}/>
-          <ReviewsSection />
+          <ReviewsSection reviews={reviews} user={user}/>
         </main>
       </>
       }

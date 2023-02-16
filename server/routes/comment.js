@@ -1,5 +1,6 @@
 const express = require('express')
 const {
+  getCommentsByReviewId,
   getComments,
   getComment,
   createComment,
@@ -8,6 +9,9 @@ const {
 } = require('../controllers/commentController')
 
 const router = express.Router()
+
+// GET reviews by restaurant ID
+router.get('/review/:id', getCommentsByReviewId)
 
 // GET all comments
 router.get('/', getComments)

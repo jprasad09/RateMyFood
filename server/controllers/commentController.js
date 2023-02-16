@@ -25,14 +25,35 @@ const getComment = async (req, res) => {
   res.status(200).json(comment)
 }
 
+// get comments by review ID
+const getCommentsByReviewId = async (req, res) => {
+  const { id } = req.params
+
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(404).json({error: 'No such comments'})
+  }
+
+  const comments = await Comment.find({ review_id: id })
+    .populate({ path: 'user_id', select: ['username', 'name'] })
+
+  if (!comments) {
+    return res.status(404).json({error: 'No such comments'})
+  }
+
+  res.status(200).json(comments)
+}
+
 // create a new comment
 const createComment = async (req, res) => {
-  const {user_id, comment} = req.body
+  const {user_id, review_id, comment} = req.body
 
   let emptyFields = []
 
   if (!user_id) {
     emptyFields.push('user_id')
+  }
+  if (!review_id) {
+    emptyFields.push('review_id')
   }
   if (!comment) {
     emptyFields.push('comment')
@@ -43,8 +64,8 @@ const createComment = async (req, res) => {
 
   // add to the database
   try {
-    const comment = await Comment.create({ user_id, comment })
-    res.status(200).json(comment)
+    const commentRes = await Comment.create({ user_id, review_id, comment })
+    res.status(200).json(commentRes)
   } catch (error) {
     res.status(400).json({ error: error.message })
   }
@@ -87,6 +108,7 @@ const updateComment = async (req, res) => {
 }
 
 module.exports = {
+  getCommentsByReviewId,
   getComments,
   getComment,
   createComment,
