@@ -9,7 +9,6 @@ export const getRestaurantsAfterSearch = (reqData) => {
       try {
   
         const response = await axios.get('/restaurants', 
-            JSON.stringify(),
             {
                 headers: { 'Content-Type': 'application/json'},
             })

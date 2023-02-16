@@ -1,0 +1,57 @@
+.reviewInfoSectionContainer{
+    display: flex;
+    flex-direction: column;
+    row-gap: 30px;
+}
+
+.reviewInfoSectionReview{
+    display: flex;
+    flex-direction: column;
+}
+
+.reviewInfoSectionReviewCreator{
+    font-size: 25px;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.reviewInfoSectionReviewAndRatingContainer p{
+    font-size: 20px;
+}
+
+.reviewInfoSectionReviewAndRatingContainer span{
+    font-size: 20px;
+}
+
+.addCommentForm{
+    display: flex;
+    margin-left: 50px;
+    column-gap: 10px;
+}
+
+.addCommentForm input{
+    padding: 15px;
+    padding-bottom: 10px;
+    width: 80%;
+    border: none;
+    border-bottom: 1px solid rgb(223, 217, 217);
+    outline: none;
+    font-size: 15px;
+}
+
+.addCommentForm input:focus {
+    border-bottom: 1px solid black;
+}
+
+.addCommentForm button{
+    background-color: black;
+    color: white;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 15px;
+    border: 2px solid white;
+    border-radius: 5px;
+    cursor: pointer;
+    align-self: flex-end;
+}

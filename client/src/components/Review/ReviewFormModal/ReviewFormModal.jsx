@@ -5,9 +5,10 @@ import { closeReviewFormModal } from "../../../redux/actions/review.action"
 import FormInput from "../../Form/FormInput/FormInput"
 import axios from "../../../api/axios"
 
-const ReviewFormModal = ({ restaurant }) => {
+const ReviewFormModal = ({ user, restaurant }) => {
 
-    const user_id = useSelector(state => state.auth.account._id)
+    //const user_id = useSelector(state => state.auth.account._id)
+    const user_id = user._id
 
     const dispatch = useDispatch()
 

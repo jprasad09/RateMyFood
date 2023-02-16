@@ -1,0 +1,30 @@
+.reviewSectionContainer{
+    margin: 50px 0 10px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+}
+
+.reviewSectionContainer h3{
+    font-size: 22px;
+}
+
+.reviewCreator{
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.singleReviewContainer{
+    cursor: pointer;
+    border-bottom: .5px solid rgb(214, 209, 209);
+    padding-bottom: 25px;
+    display: flex;
+    flex-direction: column;
+}
+
+.reviewCreator{
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 5px;
+}

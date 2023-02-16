@@ -1,0 +1,24 @@
+.commentsSectionContainer{
+    margin: 70px 0 10px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 30px;
+}
+
+.commentsSectionContainer h3{
+    font-size: 22px;
+}
+
+.singleCommentContainer{
+    border-bottom: .5px solid rgb(214, 209, 209);
+    padding-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 25px;
+}
+
+.commentCreator{
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
