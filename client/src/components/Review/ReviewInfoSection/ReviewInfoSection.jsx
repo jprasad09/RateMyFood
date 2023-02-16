@@ -1,10 +1,14 @@
 import React, { useState } from 'react'
 import styles from './reviewInfoSection.module.css'
 import axios from '../../../api/axios'
+import { useDispatch } from 'react-redux'
+import { getCommentsByReviewId } from '../../../redux/actions/comment.action'
 
 const CommentsSection = ({ user, review_id, review }) => {
 
     const [ value, setValue ] = useState('')
+
+    const dispatch = useDispatch()
 
     const handleSubmit = async(e) => {
         e.preventDefault()
@@ -22,6 +26,8 @@ const CommentsSection = ({ user, review_id, review }) => {
             setValue('')
       
             window.alert("Comment Added Successfully")
+
+            dispatch(getCommentsByReviewId(review_id))
       
           }catch(error){
             window.alert("Error")

@@ -1,13 +1,12 @@
 import React, { useState } from "react"
 import styles from "./reviewFormModal.module.css"
-import { useDispatch, useSelector } from "react-redux"
-import { closeReviewFormModal } from "../../../redux/actions/review.action"
+import { useDispatch } from "react-redux"
+import { closeReviewFormModal, getReviewsByRestaurantId} from "../../../redux/actions/review.action"
 import FormInput from "../../Form/FormInput/FormInput"
 import axios from "../../../api/axios"
 
 const ReviewFormModal = ({ user, restaurant }) => {
 
-    //const user_id = useSelector(state => state.auth.account._id)
     const user_id = user._id
 
     const dispatch = useDispatch()
@@ -40,6 +39,7 @@ const ReviewFormModal = ({ user, restaurant }) => {
         window.alert("Review Added Successfully")
 
         dispatch(closeReviewFormModal())
+        dispatch(getReviewsByRestaurantId(restaurant._id))
 
         }catch(error){
           window.alert("Error")
