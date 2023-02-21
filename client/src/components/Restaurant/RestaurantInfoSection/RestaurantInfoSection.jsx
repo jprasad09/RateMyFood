@@ -11,7 +11,7 @@ const RestaurantInfoSection = ({ restaurant }) => {
     return (
         <section className={styles.restaurantInfoSectionContainer}>
             <div className={styles.restaurantImgContainer}>
-                <img src={RestaurantImg} alt="RestaurantImg" className={styles.restaurantImg}/>
+                <img src={`http://localhost:4000/${restaurant.images[0]}`} alt="RestaurantImg" className={styles.restaurantImg}/>
             </div>
             <div className={styles.restaurantInfoContainer}>
                 <div className={styles.restaurantInfo}>

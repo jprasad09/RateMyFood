@@ -2,6 +2,19 @@ const Restaurant = require('../models/restaurantModel')
 const mongoose = require('mongoose')
 const bcrypt = require('bcryptjs')
 
+// get restaurants by search
+const getRestaurantsBySearch = async (req, res) => {
+  const { searchQuery } = req.body
+
+  const restaurantsBySearch = await Restaurant.find({ $text: { $search: searchQuery } })
+
+  if (!restaurantsBySearch) {
+    return res.status(404).json({error: 'No such restaurant'})
+  }
+
+  res.status(200).json(restaurantsBySearch)
+}
+
 // get all restaurants
 const getRestaurants = async (req, res) => {
   const restaurants = await Restaurant.find({}).sort({createdAt: -1})
@@ -28,7 +41,11 @@ const getRestaurant = async (req, res) => {
 
 // create a new restaurant
 const createRestaurant = async (req, res) => {
-  const {email, password, name, phone_no, address, images, cuisine} = req.body
+  const {email, password, name, phone_no, address, cuisine} = req.body
+  const images = []
+  for (let key in req.files){
+    images.push(req.files[key].path)
+  }
 
   let emptyFields = []
 
@@ -47,9 +64,9 @@ const createRestaurant = async (req, res) => {
   if (!address) {
     emptyFields.push('address')
   }
-  // if (!images) {
-  //   emptyFields.push('images')
-  // }
+  if (!images) {
+    emptyFields.push('images')
+  }
   // if (!cuisine) {
   //   emptyFields.push('cuisine')
   // }
@@ -111,6 +128,7 @@ const updateRestaurant = async (req, res) => {
 }
 
 module.exports = {
+  getRestaurantsBySearch,
   getRestaurants,
   getRestaurant,
   createRestaurant,

@@ -1,5 +1,9 @@
 const express = require('express')
+const multer  = require('multer')
+const upload = multer({ dest: 'uploads/' })
+
 const {
+  getRestaurantsBySearch,
   getRestaurants,
   getRestaurant,
   createRestaurant,
@@ -9,6 +13,9 @@ const {
 
 const router = express.Router()
 
+// GET restaurants by search
+router.post('/search', getRestaurantsBySearch)
+
 // GET all restaurants
 router.get('/', getRestaurants)
 
@@ -16,7 +23,7 @@ router.get('/', getRestaurants)
 router.get('/:id', getRestaurant)
 
 // POST a new restaurant
-router.post('/', createRestaurant)
+router.post('/', upload.array('images', 12), createRestaurant)
 
 // DELETE a restaurant
 router.delete('/:id', deleteRestaurant)

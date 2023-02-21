@@ -14,9 +14,11 @@ const RestaurantForm = () => {
     email: "",
     phone_no: "",
     address: "",
+    images: "",
     password: "",
     confirmPassword: "",
-  });
+  })
+  const [focused, setFocused] = useState(false)
 
   const inputs = [
     {
@@ -82,11 +84,21 @@ const RestaurantForm = () => {
   const handleSubmit = async(e) => {
     e.preventDefault();
 
+    const formData = new FormData()
+    for(let key in values){
+      if (values[key] instanceof FileList) {
+        for (let image in values[key]){
+          formData.append(key, values[key][image])
+        }
+      }
+      formData.append(key,values[key])
+    }
+
     try{
       const response = await axios.post('/restaurants', 
-        JSON.stringify(values),
+        formData,
         {
-          headers: { 'Content-Type': 'application/json'},
+          headers: { 'Content-Type': 'multipart/form-data'},
         })
       setValues({
         name: "",
@@ -126,6 +138,16 @@ const RestaurantForm = () => {
                 onChange={onChange}
               />
             ))}
+            <div className={styles.imageFormInput}>
+              <label>Add Images</label>
+              <input name='images' multiple required onChange={(e) => setValues({ ...values, images: e.target.files })} 
+                type="file" 
+                onBlur={() => setFocused(true)}
+                onFocus={() => setFocused(true)}
+                focused={focused.toString()}
+              />
+              <span>Images are required</span>
+            </div>
           </div>
           <button>Submit</button>
         </form>

@@ -42,3 +42,38 @@
     margin-top: 15px;
     margin-bottom: 30px;
 }
+
+.imageFormInput{
+    display: flex;
+    flex-direction: column;
+    max-width: 350px;
+    margin: 0 20px;
+}
+
+.imageFormInput input{
+    padding: 15px;
+    margin: 10px 0px;
+    border-radius: 5px;
+    border: 1px solid gray;
+}
+
+
+.imageFormInput label{
+    font-size: 12px;
+    color: gray;
+}
+
+.imageFormInput span{
+    font-size: 12px;
+    padding: 3px;
+    color: red;
+    display: none;
+}
+
+.imageFormInput input:invalid[focused="true"]{
+    border: 1px solid red;
+}
+
+.imageFormInput input:invalid[focused="true"] ~ span{
+    display: block;
+}
