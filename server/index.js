@@ -23,6 +23,10 @@ const corsOptions ={
 app.use(cors(corsOptions))
 app.use(cookieParser())
 app.use(express.json())
+app.use(express.urlencoded({
+  extended: true
+}))
+app.use('/uploads', express.static('uploads'))
 
 // routes
 app.use('/api/users', userRoutes)
@@ -32,6 +36,7 @@ app.use('/api/comments', commentRoutes)
 app.use('/api/auth', authRoutes)
 
 // connect to db
+mongoose.set('strictQuery', false)
 mongoose.connect(process.env.MONGO_URI)
   .then(() => {
     // listen to port

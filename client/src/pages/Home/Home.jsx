@@ -61,7 +61,7 @@ const Home = () => {
                     )
                 })
               }
-            </div> : null
+            </div> : <p>No Such Restaurants</p>
           }
         </>:      
         <>

@@ -29,7 +29,7 @@ const restaurantSchema = new Schema({
   },
   images: {
     type: [String],
-    //required: true
+    required: true
   },
   cuisine: {
     type: [String],
@@ -44,6 +44,8 @@ const restaurantSchema = new Schema({
     }
   ]
 }, { timestamps: true })
+
+restaurantSchema.index({name: 'text'})
 
 restaurantSchema.methods.generateAuthToken = async function(){
   try{

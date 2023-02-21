@@ -18,7 +18,7 @@ const SearchBar = () => {
                 placeholder={"Search Restaurants"}
                 onChange={(e) => setSearchInput(e.target.value)}
             />
-            <button onClick={() => dispatch(getRestaurantsAfterSearch(searchInput))} className={styles.searchBarButton}>Search</button>
+            <button onClick={() => dispatch(getRestaurantsAfterSearch({searchQuery: searchInput}))} className={styles.searchBarButton}>Search</button>
         </div>
     )
 }
