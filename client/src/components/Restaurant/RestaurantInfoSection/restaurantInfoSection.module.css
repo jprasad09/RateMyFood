@@ -28,6 +28,16 @@
     font-size: 25px;
 }
 
+.restaurantInfoContainer .cuisine{
+    display: flex;
+    column-gap: 7px;
+}
+
+.restaurantInfoContainer .cuisine span{
+    font-size: 15px;
+    font-weight: 600;
+}
+
 .AddReviewBtn{
     background-color: black;
     color: white;

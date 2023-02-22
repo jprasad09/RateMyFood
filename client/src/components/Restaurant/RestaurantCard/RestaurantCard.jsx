@@ -1,9 +1,9 @@
 import React from 'react'
 import styles from './restaurantCard.module.css'
-import RestaurantImg from '../../../images/restaurant.jpg'
 import { getSingleRestaurantById } from '../../../redux/actions/restaurant.action'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
+import { baseURL } from '../../../App'
 
 const RestaurantCard = ({ restaurant }) => {
 
@@ -19,16 +19,22 @@ const RestaurantCard = ({ restaurant }) => {
     <div onClick={getRestaurant} className={styles.restaurantCardContainer}>
 
       <div className={styles.restaurantCardImgSection}>
-          <img src={`http://localhost:4000/${restaurant.images[0]}`} alt="RestaurantImg" className={styles.restaurantCardImg}/>
+          <img src={`${baseURL}${restaurant?.images[0]}`} alt="RestaurantImg" className={styles.restaurantCardImg}/>
       </div>
 
       <div className={styles.restaurantCardContentSection}>
         <div className={styles.nameAndAddSection}>
-          <h3>{restaurant.name}</h3>
-          <p>{restaurant.address}</p>
+          <h3>{restaurant?.name}</h3>
+          <p>{restaurant?.address}</p>
         </div>
         <div className={styles.cuisineAndRatingSection}>
-            <span className={styles.cuisine}>Indian</span>
+          <div className={styles.cuisine}>
+            {
+              restaurant?.cuisine.map((item, index) => {return(
+                <span key={index}>{item}</span>
+              )})
+            }
+          </div>
             <span className={styles.rating}>4.3</span>
         </div>
       </div>

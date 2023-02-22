@@ -22,3 +22,5 @@ function App() {
 }
 
 export default App
+
+export const baseURL = 'http://localhost:4000/'
