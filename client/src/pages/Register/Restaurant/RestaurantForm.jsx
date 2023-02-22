@@ -15,6 +15,7 @@ const RestaurantForm = () => {
     phone_no: "",
     address: "",
     images: "",
+    cuisine: "",
     password: "",
     confirmPassword: "",
   })
@@ -60,6 +61,15 @@ const RestaurantForm = () => {
     },
     {
       id: 5,
+      name: "cuisine",
+      type: "text",
+      placeholder: "ex. Indian, Japanese, Italian",
+      errorMessage: "Cuisine is required",
+      label: "Cuisine",
+      required: true,
+    },
+    {
+      id: 6,
       name: "password",
       type: "password",
       placeholder: "Password",
@@ -70,7 +80,7 @@ const RestaurantForm = () => {
       required: true,
     },
     {
-      id: 6,
+      id: 7,
       name: "confirmPassword",
       type: "password",
       placeholder: "Confirm Password",
@@ -82,8 +92,8 @@ const RestaurantForm = () => {
   ];
 
   const handleSubmit = async(e) => {
-    e.preventDefault();
-
+    e.preventDefault()
+    
     const formData = new FormData()
     for(let key in values){
       if (values[key] instanceof FileList) {

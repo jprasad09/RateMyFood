@@ -1,8 +1,8 @@
 import React from 'react'
 import styles from './restaurantInfoSection.module.css'
-import RestaurantImg from '../../../images/restaurant1.jpg'
 import { useDispatch } from 'react-redux'
 import { openReviewFormModal } from '../../../redux/actions/review.action'
+import { baseURL } from '../../../App'
 
 const RestaurantInfoSection = ({ restaurant }) => {
 
@@ -11,12 +11,21 @@ const RestaurantInfoSection = ({ restaurant }) => {
     return (
         <section className={styles.restaurantInfoSectionContainer}>
             <div className={styles.restaurantImgContainer}>
-                <img src={`http://localhost:4000/${restaurant.images[0]}`} alt="RestaurantImg" className={styles.restaurantImg}/>
+                {restaurant.images && 
+                    <img src={`${baseURL}${restaurant?.images[0]}`} alt="RestaurantImg" className={styles.restaurantImg}/>
+                }
             </div>
             <div className={styles.restaurantInfoContainer}>
                 <div className={styles.restaurantInfo}>
-                    <h1>{restaurant.name}</h1>
-                    <p>{restaurant.address}</p>
+                    <h1>{restaurant?.name}</h1>
+                    <p>{restaurant?.address}</p>
+                    <div className={styles.cuisine}>
+                        {   restaurant.cuisine && 
+                            restaurant?.cuisine.map((item, index) => {return(
+                                <span key={index}>{item}</span>
+                            )})
+                        }
+                    </div>
                 </div>
                 <button onClick={() => dispatch(openReviewFormModal())} className={styles.AddReviewBtn}>Add Review</button>
             </div>

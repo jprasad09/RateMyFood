@@ -54,6 +54,10 @@
 
 .cuisine{
     display: flex;
+    column-gap: 7px;
+}
+
+.cuisine span{
     font-size: 15px;
     font-weight: 600;
 }

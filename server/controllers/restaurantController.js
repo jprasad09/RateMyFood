@@ -67,12 +67,14 @@ const createRestaurant = async (req, res) => {
   if (!images) {
     emptyFields.push('images')
   }
-  // if (!cuisine) {
-  //   emptyFields.push('cuisine')
-  // }
+  if (!cuisine) {
+    emptyFields.push('cuisine')
+  }
   if (emptyFields.length > 0) {
     return res.status(400).json({ error: 'Please fill in all fields', emptyFields })
   }
+
+  const cuisineArr = cuisine.split(/[ ,]+/)
 
   // add to the database
   try {
@@ -84,7 +86,7 @@ const createRestaurant = async (req, res) => {
     const salt = await bcrypt.genSalt(10)
     const hashPass = await bcrypt.hash(password, salt)
 
-    const restaurant = await Restaurant.create({ email, password:hashPass, name, phone_no, address, images, cuisine })
+    const restaurant = await Restaurant.create({ email, password:hashPass, name, phone_no, address, images, cuisine: cuisineArr  })
     res.status(200).json(restaurant)
   } catch (error) {
     res.status(400).json({ error: error.message })
