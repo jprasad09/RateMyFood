@@ -18,7 +18,7 @@ const reviewSchema = new Schema({
   },
   images: {
     type: [String],
-    //required: true
+    required: true
   },
   rating: {
     type: Number,

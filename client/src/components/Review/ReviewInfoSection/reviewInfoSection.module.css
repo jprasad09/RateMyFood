@@ -23,6 +23,19 @@
     font-size: 20px;
 }
 
+.reviewImgContainer{
+    margin-top: 10px;
+    display: flex;
+    column-gap: 10px;
+}
+
+.reviewImg{
+    height: 200px;
+    width: 200px;
+    border: 2px solid black;
+    border-radius: 5px;
+}
+
 .addCommentForm{
     display: flex;
     margin-left: 50px;
