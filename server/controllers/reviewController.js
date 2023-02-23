@@ -48,7 +48,11 @@ const getReviewsByRestaurantId = async (req, res) => {
 
 // create a new review
 const createReview = async (req, res) => {
-  const {user_id, restaurant_id, review, images, rating} = req.body
+  const {user_id, restaurant_id, review, rating} = req.body
+  const images = []
+  for (let key in req.files){
+    images.push(req.files[key].path)
+  }
 
   let emptyFields = []
 

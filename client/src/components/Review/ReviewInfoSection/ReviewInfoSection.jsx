@@ -3,6 +3,7 @@ import styles from './reviewInfoSection.module.css'
 import axios from '../../../api/axios'
 import { useDispatch } from 'react-redux'
 import { getCommentsByReviewId } from '../../../redux/actions/comment.action'
+import { baseURL } from '../../../App'
 
 const CommentsSection = ({ user, review_id, review }) => {
 
@@ -42,6 +43,12 @@ const CommentsSection = ({ user, review_id, review }) => {
           <div className={styles.reviewInfoSectionReviewAndRatingContainer}>
             <p>{review?.review}</p>
             <span>Rating - {review?.rating}</span>
+            <div className={styles.reviewImgContainer}>
+                {review.images && review?.images.map((img, id) => { return(
+                  <img key={id} src={`${baseURL}${review?.images[id]}`} alt="ReviewImg" className={styles.reviewImg}/>
+                )})
+                }
+            </div>
           </div>
         </div>
         <form onSubmit={handleSubmit} className={styles.addCommentForm}>
