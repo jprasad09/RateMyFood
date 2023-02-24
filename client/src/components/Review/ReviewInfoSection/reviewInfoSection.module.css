@@ -9,7 +9,41 @@
     flex-direction: column;
 }
 
-.reviewInfoSectionReviewCreator{
+.reviewCreatorDetailsContainer{
+    display: flex;
+    column-gap: 10px;
+    margin-bottom: 20px;
+}
+
+.reviewCreatorImgContainer{
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    box-sizing: content-box;
+}
+
+.reviewCreatorImgContainer img{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    box-sizing: content-box;
+}
+
+.reviewCreatorNotImgContainer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    box-sizing: content-box;
+    background-color: #6495ED;
+    color: white;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.reviewCreatorName{
     font-size: 25px;
     font-weight: 600;
     margin-bottom: 5px;

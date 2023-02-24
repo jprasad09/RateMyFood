@@ -1,13 +1,12 @@
-import { useState } from 'react'
-import styles from './userForm.module.css'
-import FormInput from '../../../components/Form/FormInput/FormInput'
-import axios from '../../../api/axios'
-import { useNavigate } from 'react-router-dom'
-import Navbar from '../../../components/Home/Navbar/Navbar'
+import { useState } from "react";
+import styles from "./userForm.module.css";
+import FormInput from "../../../components/Form/FormInput/FormInput";
+import axios from "../../../api/axios";
+import { useNavigate } from "react-router-dom";
+import Navbar from "../../../components/Home/Navbar/Navbar";
 
 const UserForm = () => {
-
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const [values, setValues] = useState({
     username: "",
@@ -16,9 +15,11 @@ const UserForm = () => {
     phone_no: "",
     address: "",
     dob: "",
+    profileImage: null,
     password: "",
     confirmPassword: "",
   });
+  const [focused, setFocused] = useState(false);
 
   const inputs = [
     {
@@ -97,15 +98,20 @@ const UserForm = () => {
     },
   ];
 
-  const handleSubmit = async(e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    const formData = new FormData();
+    for (let key in values) {
+      if (values[key] instanceof FileList) {
+        formData.append(key, values[key][0]);
+      }
+      formData.append(key, values[key]);
+    }
 
-    try{
-      const response = await axios.post('/users', 
-        JSON.stringify(values),
-        {
-          headers: { 'Content-Type': 'application/json'},
-        })
+    try {
+      const response = await axios.post("/users", formData, {
+        headers: { "Content-Type": "multipart/form-data" },
+      });
       setValues({
         username: "",
         name: "",
@@ -115,20 +121,19 @@ const UserForm = () => {
         birthday: "",
         password: "",
         confirmPassword: "",
-      })
+      });
 
-      window.alert("Registration Successful!")
+      window.alert("Registration Successful!");
 
-      navigate('/signin')
-  
-    }catch(error){
-      window.alert("Error")
+      navigate("/signin");
+    } catch (error) {
+      window.alert("Error");
     }
-  }
+  };
 
   const onChange = (e) => {
     setValues({ ...values, [e.target.name]: e.target.value });
-  }
+  };
 
   return (
     <>
@@ -145,12 +150,25 @@ const UserForm = () => {
                 onChange={onChange}
               />
             ))}
+            <div className={styles.imageFormInput}>
+              <label>Add Profile Image</label>
+              <input
+                name="profileImage"
+                onChange={(e) => 
+                  setValues({ ...values, profileImage: e.target.files[0] })
+                }
+                type="file"
+                onBlur={() => setFocused(true)}
+                onFocus={() => setFocused(true)}
+                focused={focused.toString()}
+              />
+            </div>
           </div>
           <button>Submit</button>
         </form>
       </div>
     </>
-  )
+  );
 };
 
-export default UserForm
+export default UserForm;

@@ -18,6 +18,41 @@
     color: white;
 }
 
+.profileDetailsContainer{
+    display: flex;
+    column-gap: 10px;
+    align-items: center;
+    justify-content: center;
+}
+
+.profileDetailsImgContainer{
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    box-sizing: content-box;
+}
+
+.profileDetailsImgContainer img{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    box-sizing: content-box;
+}
+
+.profileDetailsNotImgContainer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    box-sizing: content-box;
+    background-color: #6495ED;
+    color: white;
+    font-size: 22px;
+    font-weight: bold;
+}
+
 .navContainer button{
     background-color: black;
     color: white;

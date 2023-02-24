@@ -29,6 +29,7 @@ const getUser = async (req, res) => {
 // create a new user
 const createUser = async (req, res) => {
   const {username, password, name, email, phone_no, address, dob, fav_restaurants} = req.body
+  const profileImage = req?.file?.path
 
   let emptyFields = []
 
@@ -64,7 +65,7 @@ const createUser = async (req, res) => {
     const salt = await bcrypt.genSalt(10)
     const hashPass = await bcrypt.hash(password, salt)
 
-    const user = await User.create({ username, password:hashPass, name, email, phone_no, address, dob, fav_restaurants })
+    const user = await User.create({ username, password:hashPass, name, email, phone_no, address, dob, profileImage, fav_restaurants })
     res.status(200).json(user)
   } catch (error) {
     res.status(400).json({ error: error.message })

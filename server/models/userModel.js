@@ -35,6 +35,9 @@ const userSchema = new Schema({
   dob: {
     type: Date
   },
+  profileImage: {
+    type: String,
+  },
   fav_restaurants: {
     type: [Schema.Types.ObjectId]
   },
