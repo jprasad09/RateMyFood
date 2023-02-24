@@ -113,14 +113,12 @@ const ReviewFormModal = ({ user, restaurant }) => {
             <input
               name="images"
               multiple
-              required
               onChange={(e) => setValues({ ...values, images: e.target.files })}
               type="file"
               onBlur={() => setFocused(true)}
               onFocus={() => setFocused(true)}
               focused={focused.toString()}
             />
-            <span>Images are required</span>
           </div>
 
           <button>Submit</button>

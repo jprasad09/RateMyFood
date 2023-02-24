@@ -64,19 +64,8 @@
     color: gray;
 }
 
-.imageFormInput span{
-    font-size: 12px;
-    padding: 3px;
-    color: red;
-    display: none;
-}
-
 .imageFormInput input:invalid[focused="true"]{
     border: 1px solid red;
-}
-
-.imageFormInput input:invalid[focused="true"] ~ span{
-    display: block;
 }
 
 .reviewFormModalFormContainer button{

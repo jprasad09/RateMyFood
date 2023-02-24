@@ -34,7 +34,7 @@ const getCommentsByReviewId = async (req, res) => {
   }
 
   const comments = await Comment.find({ review_id: id })
-    .populate({ path: 'user_id', select: ['username', 'name'] })
+    .populate({ path: 'user_id', select: ['username', 'name', 'profileImage'] })
 
   if (!comments) {
     return res.status(404).json({error: 'No such comments'})

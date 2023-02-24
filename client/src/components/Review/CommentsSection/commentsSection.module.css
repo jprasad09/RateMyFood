@@ -2,7 +2,7 @@
     margin: 70px 0 10px;
     display: flex;
     flex-direction: column;
-    row-gap: 30px;
+    row-gap: 50px;
 }
 
 .commentsSectionContainer h3{
@@ -17,7 +17,41 @@
     margin-bottom: 25px;
 }
 
-.commentCreator{
+.commentCreatorDetailsContainer{
+    display: flex;
+    column-gap: 10px;
+    margin-bottom: 20px;
+}
+
+.commentCreatorImgContainer{
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    box-sizing: content-box;
+}
+
+.commentCreatorImgContainer img{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    box-sizing: content-box;
+}
+
+.commentCreatorNotImgContainer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    box-sizing: content-box;
+    background-color: #6495ED;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.commentCreatorName{
     font-size: 18px;
     font-weight: 600;
     margin-bottom: 5px;
