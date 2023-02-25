@@ -10,6 +10,7 @@ const restaurantRoutes = require('./routes/restaurant')
 const reviewRoutes = require('./routes/review')
 const commentRoutes = require('./routes/comment')
 const authRoutes = require('./routes/auth')
+const favoriteRoutes = require('./routes/favorite')
 
 // express app
 const app = express()
@@ -34,6 +35,7 @@ app.use('/api/restaurants', restaurantRoutes)
 app.use('/api/reviews', reviewRoutes)
 app.use('/api/comments', commentRoutes)
 app.use('/api/auth', authRoutes)
+app.use('/api/favorite', favoriteRoutes)
 
 // connect to db
 mongoose.set('strictQuery', false)
