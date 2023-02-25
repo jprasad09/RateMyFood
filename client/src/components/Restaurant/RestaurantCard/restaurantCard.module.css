@@ -55,11 +55,16 @@
 .cuisine{
     display: flex;
     column-gap: 7px;
+    align-items: center;
 }
 
 .cuisine span{
-    font-size: 15px;
+    font-size: 13px;
     font-weight: 600;
+    color: black;
+    background-color: #8aaef1;
+    padding: 0px 5px;
+    border-radius: 2px;
 }
 
 .rating{

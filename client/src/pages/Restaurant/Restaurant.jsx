@@ -58,7 +58,7 @@ const Restaurant = () => {
       <>
         <Navbar user={user}/>
         <main className={styles.restaurantPageContainer}>
-          <RestaurantInfoSection restaurant={restaurant}/>
+          <RestaurantInfoSection user={user} restaurant={restaurant}/>
           <ReviewsSection reviews={reviews} user={user}/>
         </main>
       </>

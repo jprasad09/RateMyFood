@@ -5,17 +5,21 @@
 }
 
 .restaurantImgContainer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
     height: 400px;
     width: 100%;
 }
 
 .restaurantImg{
     height: 100%;
-    width: 100%;
+    width: 85%;
     border-radius: 5px;
 }
 
 .restaurantInfoContainer{
+    margin-top: 10px;
     display: flex;
     justify-content: space-between;
 }
@@ -29,6 +33,7 @@
 }
 
 .restaurantInfoContainer .cuisine{
+    margin-top: 5px;
     display: flex;
     column-gap: 7px;
 }
@@ -36,6 +41,31 @@
 .restaurantInfoContainer .cuisine span{
     font-size: 15px;
     font-weight: 600;
+    color: black;
+    background-color: #8aaef1;
+    padding: 0px 5px;
+    border-radius: 2px;
+}
+
+.buttonContainer{
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+    align-items: center;
+}
+
+.AddToFavBtn{
+    width: 200px;
+    background-color: #8aaef1;
+    color: white;
+    font-weight: bold;
+    padding: 10px 0px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 15px;
+    border: 2px solid white;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
 .AddReviewBtn{
