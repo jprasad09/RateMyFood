@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getSingleReviewById } from "../../../redux/actions/review.action";
 import { baseURL } from "../../../App";
+import LikeDislike from "../../Review/LikeDislike/LikeDislike";
 
 const ReviewsSection = ({ user, reviews }) => {
   const dispatch = useDispatch();
@@ -21,12 +22,11 @@ const ReviewsSection = ({ user, reviews }) => {
         {reviews && reviews.length
           ? reviews.map((review, id) => {
               return (
-                <div
-                  onClick={() => getReview(review._id)}
-                  className={styles.singleReviewContainer}
-                  key={review?._id}
-                >
-                  <div className={styles.reviewCreatorDetailsContainer}>
+                <div className={styles.singleReviewContainer} key={review?._id}>
+                  <div
+                    onClick={() => getReview(review._id)}
+                    className={styles.reviewCreatorDetailsContainer}
+                  >
                     {review?.user_id?.profileImage ? (
                       <span className={styles.reviewCreatorImgContainer}>
                         <img
@@ -46,6 +46,13 @@ const ReviewsSection = ({ user, reviews }) => {
                   <div className={styles.reviewSectionReviewAndRatingContainer}>
                     <p>{review?.review}</p>
                     <span>Rating - {review?.rating}</span>
+                  </div>
+                  <div>
+                    <LikeDislike
+                      review
+                      review_id={review?._id}
+                      user_id={user?._id}
+                    />
                   </div>
                 </div>
               );
