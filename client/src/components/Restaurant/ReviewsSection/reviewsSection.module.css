@@ -16,7 +16,6 @@
 }
 
 .singleReviewContainer{
-    cursor: pointer;
     border-bottom: .5px solid rgb(214, 209, 209);
     padding-top: 10px;
     padding-bottom: 25px;
@@ -25,6 +24,7 @@
 }
 
 .reviewCreatorDetailsContainer{
+    cursor: pointer;
     display: flex;
     column-gap: 10px;
     margin-bottom: 10px;

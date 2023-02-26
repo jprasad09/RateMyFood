@@ -4,6 +4,7 @@ import axios from "../../../api/axios";
 import { useDispatch } from "react-redux";
 import { getCommentsByReviewId } from "../../../redux/actions/comment.action";
 import { baseURL } from "../../../App";
+import LikeDislike from "../LikeDislike/LikeDislike";
 
 const CommentsSection = ({ user, review_id, review }) => {
   const [value, setValue] = useState("");
@@ -70,6 +71,13 @@ const CommentsSection = ({ user, review_id, review }) => {
                   />
                 );
               })}
+          </div>
+          <div>
+            <LikeDislike
+              review
+              review_id={review_id}
+              user_id={user?._id}
+            />
           </div>
         </div>
       </div>

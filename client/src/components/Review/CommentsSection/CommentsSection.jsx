@@ -1,8 +1,9 @@
 import React from "react";
 import styles from "./commentsSection.module.css";
 import { baseURL } from "../../../App";
+import LikeDislike from "../LikeDislike/LikeDislike";
 
-const CommentsSection = ({ comments }) => {
+const CommentsSection = ({ user, comments }) => {
   return (
     <section className={styles.commentsSectionContainer}>
       <h3>Comments</h3>
@@ -33,6 +34,13 @@ const CommentsSection = ({ comments }) => {
                   </div>
                   <div className={styles.commentData}>
                     <p>{comment?.comment}</p>
+                  </div>
+                  <div>
+                    <LikeDislike
+                      comment
+                      comment_id={comment?._id}
+                      user_id={user?._id}
+                    />
                   </div>
                 </div>
               );

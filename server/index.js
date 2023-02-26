@@ -11,6 +11,7 @@ const reviewRoutes = require('./routes/review')
 const commentRoutes = require('./routes/comment')
 const authRoutes = require('./routes/auth')
 const favoriteRoutes = require('./routes/favorite')
+const likeDislikeRoutes = require('./routes/likeDislike')
 
 // express app
 const app = express()
@@ -36,6 +37,7 @@ app.use('/api/reviews', reviewRoutes)
 app.use('/api/comments', commentRoutes)
 app.use('/api/auth', authRoutes)
 app.use('/api/favorite', favoriteRoutes)
+app.use('/api/like', likeDislikeRoutes)
 
 // connect to db
 mongoose.set('strictQuery', false)

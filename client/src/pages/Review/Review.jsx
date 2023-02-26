@@ -56,7 +56,7 @@ const Review = () => {
         <Navbar user={user}/>
         <main className={styles.reviewPageContainer}>
             <ReviewInfoSection user={user} review_id={id} review={review}/>
-            <CommentsSection comments={comments}/>
+            <CommentsSection user={user} comments={comments}/>
         </main>
     </>
 )
