@@ -3,7 +3,6 @@ import styles from "./reviewInfoSection.module.css";
 import axios from "../../../api/axios";
 import { useDispatch } from "react-redux";
 import { getCommentsByReviewId } from "../../../redux/actions/comment.action";
-import { baseURL } from "../../../App";
 import LikeDislike from "../LikeDislike/LikeDislike";
 
 const CommentsSection = ({ user, review_id, review }) => {
@@ -43,7 +42,7 @@ const CommentsSection = ({ user, review_id, review }) => {
           {review?.user_id?.profileImage ? (
             <span className={styles.reviewCreatorImgContainer}>
               <img
-                src={`${baseURL}${review?.user_id?.profileImage}`}
+                src={review?.user_id?.profileImage}
                 alt="ProfileImage"
               />
             </span>
@@ -65,7 +64,7 @@ const CommentsSection = ({ user, review_id, review }) => {
                 return (
                   <img
                     key={id}
-                    src={`${baseURL}${review?.images[id]}`}
+                    src={review?.images[id]}
                     alt="ReviewImg"
                     className={styles.reviewImg}
                   />

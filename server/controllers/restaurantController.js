@@ -41,11 +41,7 @@ const getRestaurant = async (req, res) => {
 
 // create a new restaurant
 const createRestaurant = async (req, res) => {
-  const {email, password, name, phone_no, address, cuisine} = req.body
-  const images = []
-  for (let key in req.files){
-    images.push(req.files[key].path)
-  }
+  const {email, password, name, phone_no, address, images, cuisine} = req.body
 
   let emptyFields = []
 

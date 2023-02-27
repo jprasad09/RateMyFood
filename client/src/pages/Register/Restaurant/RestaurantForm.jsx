@@ -14,7 +14,7 @@ const RestaurantForm = () => {
     email: "",
     phone_no: "",
     address: "",
-    images: "",
+    images: [],
     cuisine: "",
     password: "",
     confirmPassword: "",
@@ -93,28 +93,19 @@ const RestaurantForm = () => {
 
   const handleSubmit = async(e) => {
     e.preventDefault()
-    
-    const formData = new FormData()
-    for(let key in values){
-      if (values[key] instanceof FileList) {
-        for (let image in values[key]){
-          formData.append(key, values[key][image])
-        }
-      }
-      formData.append(key,values[key])
-    }
 
     try{
       const response = await axios.post('/restaurants', 
-        formData,
+        JSON.stringify(values),
         {
-          headers: { 'Content-Type': 'multipart/form-data'},
+          headers: { 'Content-Type': 'application/json' },
         })
       setValues({
         name: "",
         email: "",
         phone: "",
         address: "",
+        images: [],
         password: "",
         confirmPassword: "",
       })
@@ -131,6 +122,22 @@ const RestaurantForm = () => {
 
   const onChange = (e) => {
     setValues({ ...values, [e.target.name]: e.target.value });
+  };
+
+  const handleImageChange = (e) => {
+    const files = e.target.files;
+
+    for (let i = 0; i < files.length; i++) {
+      const reader = new FileReader();
+      reader.readAsDataURL(files[i]);
+
+      reader.onload = () => {
+        setValues((values) => ({
+          ...values,
+          images: [...values.images, reader.result],
+        }));
+      };
+    }
   };
 
   return (
@@ -150,7 +157,7 @@ const RestaurantForm = () => {
             ))}
             <div className={styles.imageFormInput}>
               <label>Add Images</label>
-              <input name='images' multiple required onChange={(e) => setValues({ ...values, images: e.target.files })} 
+              <input name='images' multiple required onChange={handleImageChange} 
                 type="file" 
                 onBlur={() => setFocused(true)}
                 onFocus={() => setFocused(true)}

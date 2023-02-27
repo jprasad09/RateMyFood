@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react"
 import styles from "./navbar.module.css"
 import { NavLink, useNavigate } from 'react-router-dom'
 import Cookies from 'universal-cookie'
-import { baseURL } from "../../../App"
 
 const Navbar = ({ user }) => {
 
@@ -35,7 +34,7 @@ const Navbar = ({ user }) => {
           {
             user?.profileImage ? 
             <span className={styles.profileDetailsImgContainer}>
-              <img src={`${baseURL}${user?.profileImage}`} alt="ProfileImage" />
+              <img src={user?.profileImage} alt="ProfileImage" />
             </span> : 
             <span className={styles.profileDetailsNotImgContainer}>{user?.name?.slice(0, 1).toUpperCase()}</span>
           }

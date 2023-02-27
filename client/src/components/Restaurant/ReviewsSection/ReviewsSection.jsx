@@ -3,7 +3,6 @@ import styles from "./reviewsSection.module.css";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getSingleReviewById } from "../../../redux/actions/review.action";
-import { baseURL } from "../../../App";
 import LikeDislike from "../../Review/LikeDislike/LikeDislike";
 
 const ReviewsSection = ({ user, reviews }) => {
@@ -30,7 +29,7 @@ const ReviewsSection = ({ user, reviews }) => {
                     {review?.user_id?.profileImage ? (
                       <span className={styles.reviewCreatorImgContainer}>
                         <img
-                          src={`${baseURL}${review?.user_id?.profileImage}`}
+                          src={review?.user_id?.profileImage}
                           alt="ProfileImage"
                         />
                       </span>

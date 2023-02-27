@@ -1,6 +1,5 @@
 import React from "react";
 import styles from "./commentsSection.module.css";
-import { baseURL } from "../../../App";
 import LikeDislike from "../LikeDislike/LikeDislike";
 
 const CommentsSection = ({ user, comments }) => {
@@ -19,7 +18,7 @@ const CommentsSection = ({ user, comments }) => {
                     {comment?.user_id?.profileImage ? (
                       <span className={styles.commentCreatorImgContainer}>
                         <img
-                          src={`${baseURL}${comment?.user_id?.profileImage}`}
+                          src={comment?.user_id?.profileImage}
                           alt="ProfileImage"
                         />
                       </span>
