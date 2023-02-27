@@ -1,6 +1,4 @@
 const express = require('express')
-const multer  = require('multer')
-const upload = multer({ dest: 'uploads/' })
 
 const {
   getUsers,
@@ -19,7 +17,7 @@ router.get('/', getUsers)
 router.get('/:id', getUser)
 
 // POST a new user
-router.post('/', upload.single('profileImage'), createUser)
+router.post('/', createUser)
 
 // DELETE a user
 router.delete('/:id', deleteUser)

@@ -1,6 +1,4 @@
 const express = require('express')
-const multer  = require('multer')
-const upload = multer({ dest: 'uploads/' })
 
 const {
   getReviews,
@@ -23,7 +21,7 @@ router.get('/', getReviews)
 router.get('/:id', getReview)
 
 // POST a new review
-router.post('/', upload.array('images', 12), createReview)
+router.post('/', createReview)
 
 // DELETE a review
 router.delete('/:id', deleteReview)

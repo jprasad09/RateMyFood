@@ -15,7 +15,7 @@ const UserForm = () => {
     phone_no: "",
     address: "",
     dob: "",
-    profileImage: null,
+    profileImage: "",
     password: "",
     confirmPassword: "",
   });
@@ -100,17 +100,10 @@ const UserForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const formData = new FormData();
-    for (let key in values) {
-      if (values[key] instanceof FileList) {
-        formData.append(key, values[key][0]);
-      }
-      formData.append(key, values[key]);
-    }
 
     try {
-      const response = await axios.post("/users", formData, {
-        headers: { "Content-Type": "multipart/form-data" },
+      const response = await axios.post("/users", JSON.stringify(values), {
+        headers: { 'Content-Type': 'application/json' },
       });
       setValues({
         username: "",
@@ -135,6 +128,17 @@ const UserForm = () => {
     setValues({ ...values, [e.target.name]: e.target.value });
   };
 
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    const reader = new FileReader();
+
+    reader.readAsDataURL(file);
+
+    reader.onload = () => {
+      setValues({...values, profileImage: reader.result});
+    };
+  };
+
   return (
     <>
       <Navbar />
@@ -154,9 +158,7 @@ const UserForm = () => {
               <label>Add Profile Image</label>
               <input
                 name="profileImage"
-                onChange={(e) => 
-                  setValues({ ...values, profileImage: e.target.files[0] })
-                }
+                onChange={handleImageChange}  
                 type="file"
                 onBlur={() => setFocused(true)}
                 onFocus={() => setFocused(true)}

@@ -2,7 +2,6 @@ import React, { useState, useEffect, useCallback } from "react";
 import styles from "./restaurantInfoSection.module.css";
 import { useDispatch } from "react-redux";
 import { openReviewFormModal } from "../../../redux/actions/review.action";
-import { baseURL } from "../../../App";
 import axios from "../../../api/axios";
 
 const RestaurantInfoSection = ({ user, restaurant }) => {
@@ -91,7 +90,7 @@ const RestaurantInfoSection = ({ user, restaurant }) => {
       <div className={styles.restaurantImgContainer}>
         {restaurant.images && (
           <img
-            src={`${baseURL}${restaurant?.images[0]}`}
+            src={restaurant?.images[0]}
             alt="RestaurantImg"
             className={styles.restaurantImg}
           />

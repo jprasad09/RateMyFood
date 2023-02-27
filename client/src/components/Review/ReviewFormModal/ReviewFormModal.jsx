@@ -16,35 +16,31 @@ const ReviewFormModal = ({ user, restaurant }) => {
   const [values, setValues] = useState({
     review: "",
     rating: "",
-    images: "",
+    images: [],
   });
 
   const [focused, setFocused] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    const formData = new FormData();
-    formData.append("user_id", user_id);
-    formData.append("restaurant_id", restaurant._id);
-    formData.append("review", values.review);
-    formData.append("rating", values.rating);
-    for (let key in values) {
-      if (values[key] instanceof FileList) {
-        for (let image in values[key]) {
-          formData.append(key, values[key][image]);
-        }
-      }
+    
+    const formData = {
+      user_id: user_id,
+      restaurant_id: restaurant._id,
+      review: values.review,
+      rating: values.rating,
+      images: values.images
     }
 
     try {
-      const response = await axios.post("/reviews", formData, {
-        headers: { "Content-Type": "multipart/form-data" },
+      const response = await axios.post("/reviews", JSON.stringify(formData), {
+        headers: { 'Content-Type': 'application/json' },
       });
 
       setValues({
         review: "",
         rating: "",
+        images: ""
       });
 
       window.alert("Review Added Successfully");
@@ -83,6 +79,22 @@ const ReviewFormModal = ({ user, restaurant }) => {
     setValues({ ...values, [e.target.name]: e.target.value });
   };
 
+  const handleImageChange = (e) => {
+    const files = e.target.files;
+
+    for (let i = 0; i < files.length; i++) {
+      const reader = new FileReader();
+      reader.readAsDataURL(files[i]);
+
+      reader.onload = () => {
+        setValues((values) => ({
+          ...values,
+          images: [...values.images, reader.result],
+        }));
+      };
+    }
+  };
+
   return (
     <div className={styles.reviewFormModalBackground}>
       <div className={styles.reviewFormModalContainer}>
@@ -113,7 +125,7 @@ const ReviewFormModal = ({ user, restaurant }) => {
             <input
               name="images"
               multiple
-              onChange={(e) => setValues({ ...values, images: e.target.files })}
+              onChange={handleImageChange}
               type="file"
               onBlur={() => setFocused(true)}
               onFocus={() => setFocused(true)}

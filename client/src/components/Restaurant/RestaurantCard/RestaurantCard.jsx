@@ -3,7 +3,6 @@ import styles from './restaurantCard.module.css'
 import { getSingleRestaurantById } from '../../../redux/actions/restaurant.action'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { baseURL } from '../../../App'
 
 const RestaurantCard = ({ restaurant }) => {
 
@@ -19,7 +18,7 @@ const RestaurantCard = ({ restaurant }) => {
     <div onClick={getRestaurant} className={styles.restaurantCardContainer}>
 
       <div className={styles.restaurantCardImgSection}>
-          <img src={`${baseURL}${restaurant?.images[0]}`} alt="RestaurantImg" className={styles.restaurantCardImg}/>
+          <img src={restaurant?.images[0]} alt="RestaurantImg" className={styles.restaurantCardImg}/>
       </div>
 
       <div className={styles.restaurantCardContentSection}>
@@ -35,7 +34,7 @@ const RestaurantCard = ({ restaurant }) => {
               )})
             }
           </div>
-            <span className={styles.rating}>4.3</span>
+            <span className={styles.rating}>{restaurant?.average_rating.toFixed(1)}</span>
         </div>
       </div>
 

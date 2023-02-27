@@ -28,8 +28,7 @@ const getUser = async (req, res) => {
 
 // create a new user
 const createUser = async (req, res) => {
-  const {username, password, name, email, phone_no, address, dob, fav_restaurants} = req.body
-  const profileImage = req?.file?.path
+  const {username, password, name, email, phone_no, address, dob, profileImage, fav_restaurants} = req.body
 
   let emptyFields = []
 
