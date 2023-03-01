@@ -2,7 +2,7 @@
     margin: 70px 0 10px;
     display: flex;
     flex-direction: column;
-    row-gap: 50px;
+    row-gap: 40px;
 }
 
 .commentsSectionContainer h3{
@@ -20,7 +20,7 @@
 .commentCreatorDetailsContainer{
     display: flex;
     column-gap: 10px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 .commentCreatorImgContainer{
@@ -55,4 +55,8 @@
     font-size: 18px;
     font-weight: 600;
     margin-bottom: 5px;
+}
+
+.commentData{
+    margin-bottom: 7px;
 }

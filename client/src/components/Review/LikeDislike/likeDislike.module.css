@@ -4,6 +4,14 @@
     column-gap: 5px;
 }
 
+.buttonContainer button{
+    background-color: rgb(240, 255, 253);
+    padding: 0 10px;
+    border-radius: 20px;
+    border: 1px solid black;
+    cursor: pointer;
+}
+
 .like{
     color: blue;
 }

@@ -56,7 +56,7 @@ const ReviewsSection = ({ user, reviews }) => {
                 </div>
               );
             })
-          : null}
+          : <span>No reviews to show</span>}
       </div>
     </section>
   );
