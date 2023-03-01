@@ -1,0 +1,21 @@
+.restaurantProfileContainer{
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    row-gap: 50px;
+}
+
+.restaurantProfileContainer button{
+    background-color: red;
+    color: black;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 18px;
+    border: 2px solid white;
+    border-radius: 5px;
+    cursor: pointer;
+    height: 60px;
+}

@@ -5,11 +5,13 @@ import RestaurantForm from './pages/Register/Restaurant/RestaurantForm'
 import Login from './pages/Login/Login'
 import Restaurant from './pages/Restaurant/Restaurant'
 import Review from "./pages/Review/Review"
+import RestaurantProfile from "./pages/RestaurantProfile/RestaurantProfile"
 
 function App() {
   return (
     <Router>
       <Routes>
+        <Route exact path="/restaurantprofile" element={<RestaurantProfile />} />
         <Route exact path="/" element={<Home />} />
         <Route exact path="/register/user" element={<UserForm />} />
         <Route exact path="/register/restaurant" element={<RestaurantForm />} />
