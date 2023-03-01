@@ -44,7 +44,7 @@ const CommentsSection = ({ user, comments }) => {
                 </div>
               );
             })
-          : null}
+          : <span>No comments to show</span>}
       </div>
     </section>
   );

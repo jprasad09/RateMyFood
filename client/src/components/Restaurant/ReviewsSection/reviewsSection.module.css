@@ -17,8 +17,8 @@
 
 .singleReviewContainer{
     border-bottom: .5px solid rgb(214, 209, 209);
-    padding-top: 10px;
-    padding-bottom: 25px;
+    padding-top: 20px;
+    padding-bottom: 10px;
     display: flex;
     flex-direction: column;
 }
@@ -62,4 +62,15 @@
     font-size: 18px;
     font-weight: 600;
     margin-bottom: 5px;
+}
+
+.reviewSectionReviewAndRatingContainer{
+    display: flex;
+    flex-direction: column;
+    row-gap: 5px;
+    margin-bottom: 20px;
+}
+
+.reviewSectionReviewAndRatingContainer span{
+    font-weight: 800;
 }
