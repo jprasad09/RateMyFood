@@ -65,7 +65,11 @@ const Login = () => {
 
       window.alert("Login Successful!")
 
-      navigate('/')
+      if(response.data.user){
+        navigate('/')
+      }else if(response.data.restaurant){
+        navigate('/restaurantprofile')
+      }
   
     }catch(error){
       window.alert("Error")

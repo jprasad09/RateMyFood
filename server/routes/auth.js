@@ -3,6 +3,7 @@ const User = require('../models/userModel')
 const Restaurant = require('../models/restaurantModel')
 const bcrypt = require('bcryptjs')
 const authenticate = require('../middlewares/authenticate')
+const authenticateRes = require('../middlewares/authenticateRes')
 
 const router = express.Router()
 
@@ -28,7 +29,7 @@ router.post('/signin', async (req,res) => {
                 if(!isMatch){
                     res.status(400).json({ error : "Invalid credentials" })
                 }else{
-                    res.status(200).json({ message : "Signin successful", token, account: userLogin })
+                    res.status(200).json({ user: true, message : "Signin successful", token, account: userLogin })
                 }
             }else{
                 const isMatch = await bcrypt.compare(password, restaurantLogin.password)
@@ -38,7 +39,7 @@ router.post('/signin', async (req,res) => {
                 if(!isMatch){
                     res.status(400).json({ error : "Invalid credentials" })
                 }else{
-                    res.status(200).json({ message : "Signin successful", token, account: restaurantLogin })
+                    res.status(200).json({ restaurant: true, message : "Signin successful", token, account: restaurantLogin })
                 }
             }
         }
@@ -47,6 +48,10 @@ router.post('/signin', async (req,res) => {
         res.status(400).json({ error: error.message })
     }
 
+})
+
+router.get('/restaurantprofile', authenticateRes, (req,res) => {
+    res.send(req.restaurant)
 })
 
 router.get('/review', authenticate, (req,res) => {
