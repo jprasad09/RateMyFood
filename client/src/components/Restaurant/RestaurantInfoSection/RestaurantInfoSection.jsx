@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { openReviewFormModal } from "../../../redux/actions/review.action";
 import axios from "../../../api/axios";
 import PacmanLoader from "react-spinners/PacmanLoader";
+import { FaHeart } from "react-icons/fa";
 
 const RestaurantInfoSection = ({ user, restaurant }) => {
 
@@ -122,12 +123,13 @@ const RestaurantInfoSection = ({ user, restaurant }) => {
                 return <span key={index}>{item}</span>;
               })}
           </div>
+          <h4 style={{ marginTop: "10px" }}>Overall Rating - {restaurant?.average_rating}</h4>
         </div>
         <div className={styles.buttonContainer}>
-          <button onClick={onClickFavorite} className={styles.AddToFavBtn}>
-            {Favorited ? " remove from Favorite " : " Add to Favorite "}
-            {FavoriteNumber}
-          </button>
+          <div style={{ fontSize: "30px", display: "flex", alignItems: "center", columnGap: "8px" }}>
+            <FaHeart onClick={onClickFavorite} style={ Favorited ? {color: "red", cursor: "pointer"} : {color: "black", cursor: "pointer"}}/>
+            <span>{FavoriteNumber}</span>
+          </div>
           <button
             onClick={() => dispatch(openReviewFormModal())}
             className={styles.AddReviewBtn}

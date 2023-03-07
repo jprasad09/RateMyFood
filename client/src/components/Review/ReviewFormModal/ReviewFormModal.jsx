@@ -67,7 +67,7 @@ const ReviewFormModal = ({ user, restaurant }) => {
       name: "rating",
       type: "number",
       placeholder: "Rating",
-      errorMessage: "Please enter rating between 1 to 5",
+      errorMessage: "Please enter integer rating between 1 to 5",
       min: 1,
       max: 5,
       label: "Rating",

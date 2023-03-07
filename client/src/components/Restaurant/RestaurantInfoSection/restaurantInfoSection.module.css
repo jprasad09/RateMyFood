@@ -54,20 +54,6 @@
     align-items: center;
 }
 
-.AddToFavBtn{
-    width: 200px;
-    background-color: #8aaef1;
-    color: white;
-    font-weight: bold;
-    padding: 10px 0px;
-    text-align: center;
-    text-decoration: none;
-    font-size: 15px;
-    border: 2px solid white;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
 .AddReviewBtn{
     background-color: black;
     color: white;

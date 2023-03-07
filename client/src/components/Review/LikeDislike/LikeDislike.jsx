@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "../../../api/axios";
 import styles from "./likeDislike.module.css";
+import { FaThumbsDown } from "react-icons/fa";
+import { FaThumbsUp } from "react-icons/fa";
 
 const LikeDislike = (props) => {
   const [Likes, setLikes] = useState(0);
@@ -107,31 +109,17 @@ const LikeDislike = (props) => {
   };
 
   return (
-    <>
+    <div style={{ display: "flex", alignItems: "center", columnGap: "10px"}}>
       <span className={styles.buttonContainer}>
-        <button
-          onClick={onLike}
-          className={LikeAction === "liked" ? styles.like : ''}
-        >
-          LIKE
-        </button>
+        <FaThumbsUp style={LikeAction === "liked" ? {color: "#99cc8f", cursor: "pointer"} : {color: "#242624", cursor: "pointer"}}/>
         <span>{Likes}</span>
       </span>
       &nbsp;&nbsp;&nbsp;&nbsp;
       <span className={styles.buttonContainer}>
-        <button
-          onClick={onDisLike}
-          className={
-            DislikeAction === "disliked"
-              ? styles.dislike
-              : ''
-          }
-        >
-          DISLIKE
-        </button>
+        <FaThumbsDown style={DislikeAction === "disliked" ? {color: "#e85651", cursor: "pointer"} : {color: "#242624", cursor: "pointer"}}/>
         <span>{Dislikes}</span>
       </span>
-    </>
+    </div>
   );
 };
 

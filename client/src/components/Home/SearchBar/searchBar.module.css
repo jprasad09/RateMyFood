@@ -1,5 +1,7 @@
 .searchBarContainer{
     display: flex;
+    align-items: center;
+    column-gap: 10px;
     min-width: 500px;
 }
 
@@ -8,17 +10,4 @@
     padding: 15px;
     border-radius: 5px;
     border: 1px solid gray;
-}
-
-.searchBarButton{
-    background-color: black;
-    color: white;
-    margin: 0 5px;
-    padding: 5px 25px;
-    text-align: center;
-    text-decoration: none;
-    font-size: 16px;
-    border: 2px solid white;
-    border-radius: 5px;
-    cursor: pointer;
 }
