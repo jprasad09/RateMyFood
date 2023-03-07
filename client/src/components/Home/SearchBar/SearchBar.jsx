@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import styles from './searchBar.module.css'
 import { getRestaurantsAfterSearch } from '../../../redux/actions/restaurant.action'
 import { useDispatch } from 'react-redux'
+import { FaSearch } from "react-icons/fa";
 
 const SearchBar = () => {
 
@@ -18,7 +19,8 @@ const SearchBar = () => {
                 placeholder={"Search Restaurants"}
                 onChange={(e) => setSearchInput(e.target.value)}
             />
-            <button onClick={() => dispatch(getRestaurantsAfterSearch({searchQuery: searchInput}))} className={styles.searchBarButton}>Search</button>
+            <FaSearch onClick={() => dispatch(getRestaurantsAfterSearch({searchQuery: searchInput}))} style={{cursor: "pointer", fontSize: "40px"}}/>
+
         </div>
     )
 }

@@ -54,8 +54,24 @@ const RestaurantProfile = () => {
 
   return (
     <section className={styles.restaurantProfileContainer}>
-      <h1>Want to delete your restaurant profile?</h1>
-      <button onClick={handleDeleteRestaurant}>DELETE</button>
+      <div className={styles.restaurantInfoContainer}>
+        <h3>Restaurant Basic Info:</h3>
+        <p>Name - {restaurant?.name}</p>
+        <p>Email - {restaurant?.email}</p>
+        <p>Phone - {restaurant?.phone_no}</p>
+        <p>Address - {restaurant?.address}</p>
+        <p>
+          Cuisine - 
+          {restaurant.cuisine &&
+            restaurant?.cuisine.map((item, index) => {
+              return <span key={index}> {item}</span>;
+            })}
+        </p>
+      </div>
+      <div className={styles.restaurantDeleteContainer}>
+        <h1>Want to delete your restaurant profile?</h1>
+        <button onClick={handleDeleteRestaurant}>DELETE</button>
+      </div>
     </section>
   );
 };
