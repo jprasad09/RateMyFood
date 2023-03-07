@@ -11,3 +11,9 @@
     border-radius: 5px;
     border: 1px solid gray;
 }
+
+@media screen and (max-width: 550px){
+    .searchBarContainer{
+        min-width: 300px;
+    }
+}
