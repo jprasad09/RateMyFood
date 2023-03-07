@@ -1,13 +1,13 @@
-import { useState } from 'react'
-import styles from './restaurantForm.module.css'
-import FormInput from '../../../components/Form/FormInput/FormInput'
-import axios from '../../../api/axios'
-import { useNavigate } from 'react-router-dom'
-import Navbar from '../../../components/Home/Navbar/Navbar'
+import { useState } from "react";
+import styles from "./restaurantForm.module.css";
+import FormInput from "../../../components/Form/FormInput/FormInput";
+import axios from "../../../api/axios";
+import { useNavigate } from "react-router-dom";
+import Navbar from "../../../components/Home/Navbar/Navbar";
+import ClipLoader from "react-spinners/ClipLoader";
 
 const RestaurantForm = () => {
-
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const [values, setValues] = useState({
     name: "",
@@ -18,8 +18,9 @@ const RestaurantForm = () => {
     cuisine: "",
     password: "",
     confirmPassword: "",
-  })
-  const [focused, setFocused] = useState(false)
+  });
+  let [loading, setLoading] = useState(false);
+  const [focused, setFocused] = useState(false);
 
   const inputs = [
     {
@@ -91,15 +92,20 @@ const RestaurantForm = () => {
     },
   ];
 
-  const handleSubmit = async(e) => {
-    e.preventDefault()
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
 
-    try{
-      const response = await axios.post('/restaurants', 
+    try {
+      const response = await axios.post(
+        "/restaurants",
         JSON.stringify(values),
         {
-          headers: { 'Content-Type': 'application/json' },
-        })
+          headers: { "Content-Type": "application/json" },
+        }
+      );
+      setLoading(false);
+
       setValues({
         name: "",
         email: "",
@@ -108,16 +114,16 @@ const RestaurantForm = () => {
         images: [],
         password: "",
         confirmPassword: "",
-      })
+      });
 
-      window.alert("Registration Successful!")
+      window.alert("Registration Successful!");
 
-      navigate('/signin')
-  
-    }catch(error){
-      window.alert("Error")
+      navigate("/signin");
+    } catch (error) {
+      setLoading(false);
+
+      window.alert("Error");
     }
-
   };
 
   const onChange = (e) => {
@@ -144,33 +150,47 @@ const RestaurantForm = () => {
     <>
       <Navbar />
       <div className={styles.restaurantFormContainer}>
-        <form onSubmit={handleSubmit}>
-          <h1>Register</h1>
-          <div>
-            {inputs.map((input) => (
-              <FormInput
-                key={input.id}
-                {...input}
-                value={values[input.name]}
-                onChange={onChange}
-              />
-            ))}
-            <div className={styles.imageFormInput}>
-              <label>Add Images</label>
-              <input name='images' multiple required onChange={handleImageChange} 
-                type="file" 
-                onBlur={() => setFocused(true)}
-                onFocus={() => setFocused(true)}
-                focused={focused.toString()}
-              />
-              <span>Images are required</span>
+        {loading ? (
+          <ClipLoader
+            color="#36d7b7"
+            loading={loading}
+            size={100}
+            aria-label="Loading Spinner"
+            data-testid="loader"
+          />
+        ) : (
+          <form onSubmit={handleSubmit}>
+            <h1>Register</h1>
+            <div>
+              {inputs.map((input) => (
+                <FormInput
+                  key={input.id}
+                  {...input}
+                  value={values[input.name]}
+                  onChange={onChange}
+                />
+              ))}
+              <div className={styles.imageFormInput}>
+                <label>Add Images</label>
+                <input
+                  name="images"
+                  multiple
+                  required
+                  onChange={handleImageChange}
+                  type="file"
+                  onBlur={() => setFocused(true)}
+                  onFocus={() => setFocused(true)}
+                  focused={focused.toString()}
+                />
+                <span>Images are required</span>
+              </div>
             </div>
-          </div>
-          <button>Submit</button>
-        </form>
+            <button>Submit</button>
+          </form>
+        )}
       </div>
     </>
-  )
+  );
 };
 
-export default RestaurantForm
+export default RestaurantForm;

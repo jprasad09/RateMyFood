@@ -1,11 +1,16 @@
 import React, { useState } from "react";
 import styles from "./reviewInfoSection.module.css";
 import axios from "../../../api/axios";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getCommentsByReviewId } from "../../../redux/actions/comment.action";
 import LikeDislike from "../LikeDislike/LikeDislike";
+import PacmanLoader from "react-spinners/PacmanLoader";
 
-const CommentsSection = ({ user, review_id, review }) => {
+const ReviewInfoSection = ({ user, review_id, review }) => {
+  const singleReviewByIdLoading = useSelector(
+    (state) => state.review.singleReviewByIdLoading
+  );
+
   const [value, setValue] = useState("");
 
   const dispatch = useDispatch();
@@ -37,60 +42,68 @@ const CommentsSection = ({ user, review_id, review }) => {
 
   return (
     <section className={styles.reviewInfoSectionContainer}>
-      <div className={styles.reviewInfoSectionReview}>
-        <div className={styles.reviewCreatorDetailsContainer}>
-          {review?.user_id?.profileImage ? (
-            <span className={styles.reviewCreatorImgContainer}>
-              <img
-                src={review?.user_id?.profileImage}
-                alt="ProfileImage"
-              />
-            </span>
-          ) : (
-            <span className={styles.reviewCreatorNotImgContainer}>
-              {review?.user_id?.name?.slice(0, 1).toUpperCase()}
-            </span>
-          )}
-          <span className={styles.reviewCreatorName}>
-            {review?.user_id?.username}
-          </span>
+      {singleReviewByIdLoading ? (
+        <div
+          style={{ display: "flex", alignSelf: "center", marginTop: "20px" }}
+        >
+          <PacmanLoader
+            color="#36d7b7"
+            size={25}
+            aria-label="Loading Spinner"
+            data-testid="loader"
+          />
         </div>
-        <div className={styles.reviewInfoSectionReviewAndRatingContainer}>
-          <p>{review?.review}</p>
-          <span>Rating - {review?.rating}</span>
-          <div className={styles.reviewImgContainer}>
-            {review.images &&
-              review?.images.map((img, id) => {
-                return (
-                  <img
-                    key={id}
-                    src={review?.images[id]}
-                    alt="ReviewImg"
-                    className={styles.reviewImg}
-                  />
-                );
-              })}
+      ) : (
+        <>
+          <div className={styles.reviewInfoSectionReview}>
+            <div className={styles.reviewCreatorDetailsContainer}>
+              {review?.user_id?.profileImage ? (
+                <span className={styles.reviewCreatorImgContainer}>
+                  <img src={review?.user_id?.profileImage} alt="ProfileImage" />
+                </span>
+              ) : (
+                <span className={styles.reviewCreatorNotImgContainer}>
+                  {review?.user_id?.name?.slice(0, 1).toUpperCase()}
+                </span>
+              )}
+              <span className={styles.reviewCreatorName}>
+                {review?.user_id?.username}
+              </span>
+            </div>
+            <div className={styles.reviewInfoSectionReviewAndRatingContainer}>
+              <p>{review?.review}</p>
+              <span>Rating - {review?.rating}</span>
+              <div className={styles.reviewImgContainer}>
+                {review.images &&
+                  review?.images.map((img, id) => {
+                    return (
+                      <img
+                        key={id}
+                        src={review?.images[id]}
+                        alt="ReviewImg"
+                        className={styles.reviewImg}
+                      />
+                    );
+                  })}
+              </div>
+              <div>
+                <LikeDislike review review_id={review?._id} user_id={user?._id} />
+              </div>
+            </div>
           </div>
-          <div>
-            <LikeDislike
-              review
-              review_id={review_id}
-              user_id={user?._id}
+          <form onSubmit={handleSubmit} className={styles.addCommentForm}>
+            <input
+              type="text"
+              placeholder="Add a Comment"
+              value={value}
+              onChange={(e) => setValue(e.target.value)}
             />
-          </div>
-        </div>
-      </div>
-      <form onSubmit={handleSubmit} className={styles.addCommentForm}>
-        <input
-          type="text"
-          placeholder="Add a Comment"
-          value={value}
-          onChange={(e) => setValue(e.target.value)}
-        />
-        <button>Submit</button>
-      </form>
+            <button>Submit</button>
+          </form>
+        </>
+      )}
     </section>
   );
 };
 
-export default CommentsSection;
+export default ReviewInfoSection;

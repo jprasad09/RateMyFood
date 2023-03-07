@@ -1,10 +1,16 @@
 import React, { useState, useEffect, useCallback } from "react";
 import styles from "./restaurantInfoSection.module.css";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { openReviewFormModal } from "../../../redux/actions/review.action";
 import axios from "../../../api/axios";
+import PacmanLoader from "react-spinners/PacmanLoader";
 
 const RestaurantInfoSection = ({ user, restaurant }) => {
+
+  const singleRestaurantByIdLoading = useSelector(
+    (state) => state.restaurant.singleRestaurantByIdLoading
+  );
+
   const [FavoriteNumber, setFavoriteNumber] = useState(0);
   const [Favorited, setFavorited] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -87,6 +93,16 @@ const RestaurantInfoSection = ({ user, restaurant }) => {
 
   return (
     <section className={styles.restaurantInfoSectionContainer}>
+      {singleRestaurantByIdLoading ? (
+        <div style={{ display: "flex", alignSelf: "center", marginTop: "20px" }}>
+          <PacmanLoader
+            color="#36d7b7"
+            size={25}
+            aria-label="Loading Spinner"
+            data-testid="loader"
+          />
+        </div>
+      ) : null}
       <div className={styles.restaurantImgContainer}>
         {restaurant.images && (
           <img
