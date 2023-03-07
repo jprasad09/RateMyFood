@@ -111,12 +111,12 @@ const LikeDislike = (props) => {
   return (
     <div style={{ display: "flex", alignItems: "center", columnGap: "10px"}}>
       <span className={styles.buttonContainer}>
-        <FaThumbsUp style={LikeAction === "liked" ? {color: "#99cc8f", cursor: "pointer"} : {color: "#242624", cursor: "pointer"}}/>
+        <FaThumbsUp onClick={onLike} style={LikeAction === "liked" ? {color: "#99cc8f", cursor: "pointer"} : {color: "#242624", cursor: "pointer"}}/>
         <span>{Likes}</span>
       </span>
       &nbsp;&nbsp;&nbsp;&nbsp;
       <span className={styles.buttonContainer}>
-        <FaThumbsDown style={DislikeAction === "disliked" ? {color: "#e85651", cursor: "pointer"} : {color: "#242624", cursor: "pointer"}}/>
+        <FaThumbsDown onClick={onDisLike} style={DislikeAction === "disliked" ? {color: "#e85651", cursor: "pointer"} : {color: "#242624", cursor: "pointer"}}/>
         <span>{Dislikes}</span>
       </span>
     </div>
