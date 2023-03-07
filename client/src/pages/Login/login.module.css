@@ -13,7 +13,6 @@
     justify-content: center;
     width: 35%;
     background-color: white;
-    padding: 30px 60px 0px;
     border-radius: 10px;
 }
   
@@ -35,4 +34,13 @@
     cursor: pointer;
     margin-top: 15px;
     margin-bottom: 30px;
+}
+
+@media screen and (max-width: 1000px){
+    .loginContainer form{
+        margin: 20px 5rem;
+        padding: 30px 10px 0px;
+        width: 70%;
+        align-items: center;
+    }
 }

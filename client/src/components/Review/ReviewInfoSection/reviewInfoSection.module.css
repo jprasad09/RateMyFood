@@ -109,3 +109,11 @@
     cursor: pointer;
     align-self: flex-end;
 }
+
+@media screen and (max-width: 550px){
+    .reviewImg{
+        height: 150px;
+        width: 150px;
+    }
+        
+}

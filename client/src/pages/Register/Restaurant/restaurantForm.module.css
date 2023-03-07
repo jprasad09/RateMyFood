@@ -77,3 +77,10 @@
 .imageFormInput input:invalid[focused="true"] ~ span{
     display: block;
 }
+
+@media screen and (max-width: 500px){
+    .restaurantFormContainer form{
+        margin: 20px 5rem;
+        padding: 30px 10px 0px;
+    }
+}

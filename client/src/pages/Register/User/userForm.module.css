@@ -65,3 +65,10 @@
     margin-top: 15px;
     margin-bottom: 30px;
 }
+
+@media screen and (max-width: 500px){
+    .userFormContainer form{
+        margin: 20px 5rem;
+        padding: 30px 10px 0px;
+    }
+}

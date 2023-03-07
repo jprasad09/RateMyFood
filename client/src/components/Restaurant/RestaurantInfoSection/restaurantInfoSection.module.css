@@ -66,3 +66,47 @@
     cursor: pointer;
     height: 60px;
 }
+
+@media screen and (max-width: 800px){
+    .restaurantImgContainer{
+        height: 300px;
+        width: 100%;
+    }
+    .restaurantImg{
+        width: 80%;
+    }
+    
+}
+
+@media screen and (max-width: 550px){
+    .restaurantInfoContainer h1{
+        font-size: 25px;
+    }
+    
+    .restaurantInfoContainer p{
+        font-size: 18px;
+    }
+    
+    .restaurantInfoContainer .cuisine span{
+        font-size: 15px;
+        font-weight: 600;
+        color: black;
+        background-color: #8aaef1;
+        padding: 0px 5px;
+        border-radius: 2px;
+    }
+    
+    .AddReviewBtn{
+        background-color: black;
+        color: white;
+        padding: 7px 15px;
+        text-align: center;
+        text-decoration: none;
+        font-size: 15px;
+        border: 2px solid white;
+        border-radius: 5px;
+        cursor: pointer;
+        height: 40px;
+    }
+    
+    }
