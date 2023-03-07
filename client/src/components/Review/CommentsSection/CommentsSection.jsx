@@ -1,11 +1,25 @@
 import React from "react";
 import styles from "./commentsSection.module.css";
 import LikeDislike from "../LikeDislike/LikeDislike";
+import { useSelector } from "react-redux";
+import SyncLoader from "react-spinners/SyncLoader";
 
 const CommentsSection = ({ user, comments }) => {
+  const commentsByReviewIdLoading = useSelector(
+    (state) => state.comment.commentsByReviewIdLoading
+  );
+
   return (
     <section className={styles.commentsSectionContainer}>
       <h3>Comments</h3>
+      {commentsByReviewIdLoading ? (
+        <SyncLoader
+          color="#36d7b7"
+          size={15}
+          aria-label="Loading Spinner"
+          data-testid="loader"
+        />
+      ) : null}
       <div className={styles.commentsContainer}>
         {comments && comments.length
           ? comments.map((comment, id) => {

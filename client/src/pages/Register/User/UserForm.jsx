@@ -4,6 +4,7 @@ import FormInput from "../../../components/Form/FormInput/FormInput";
 import axios from "../../../api/axios";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../../../components/Home/Navbar/Navbar";
+import ClipLoader from "react-spinners/ClipLoader";
 
 const UserForm = () => {
   const navigate = useNavigate();
@@ -19,6 +20,7 @@ const UserForm = () => {
     password: "",
     confirmPassword: "",
   });
+  let [loading, setLoading] = useState(false);
   const [focused, setFocused] = useState(false);
 
   const inputs = [
@@ -101,10 +103,13 @@ const UserForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    setLoading(true);
+
     try {
       const response = await axios.post("/users", JSON.stringify(values), {
-        headers: { 'Content-Type': 'application/json' },
+        headers: { "Content-Type": "application/json" },
       });
+      setLoading(false);
       setValues({
         username: "",
         name: "",
@@ -120,6 +125,7 @@ const UserForm = () => {
 
       navigate("/signin");
     } catch (error) {
+      setLoading(false);
       window.alert("Error");
     }
   };
@@ -135,7 +141,7 @@ const UserForm = () => {
     reader.readAsDataURL(file);
 
     reader.onload = () => {
-      setValues({...values, profileImage: reader.result});
+      setValues({ ...values, profileImage: reader.result });
     };
   };
 
@@ -143,31 +149,41 @@ const UserForm = () => {
     <>
       <Navbar />
       <div className={styles.userFormContainer}>
-        <form onSubmit={handleSubmit}>
-          <h1>Register</h1>
-          <div>
-            {inputs.map((input) => (
-              <FormInput
-                key={input.id}
-                {...input}
-                value={values[input.name]}
-                onChange={onChange}
-              />
-            ))}
-            <div className={styles.imageFormInput}>
-              <label>Add Profile Image</label>
-              <input
-                name="profileImage"
-                onChange={handleImageChange}  
-                type="file"
-                onBlur={() => setFocused(true)}
-                onFocus={() => setFocused(true)}
-                focused={focused.toString()}
-              />
+        {loading ? (
+          <ClipLoader
+            color="#36d7b7"
+            loading={loading}
+            size={100}
+            aria-label="Loading Spinner"
+            data-testid="loader"
+          />
+        ) : (
+          <form onSubmit={handleSubmit}>
+            <h1>Register</h1>
+            <div>
+              {inputs.map((input) => (
+                <FormInput
+                  key={input.id}
+                  {...input}
+                  value={values[input.name]}
+                  onChange={onChange}
+                />
+              ))}
+              <div className={styles.imageFormInput}>
+                <label>Add Profile Image</label>
+                <input
+                  name="profileImage"
+                  onChange={handleImageChange}
+                  type="file"
+                  onBlur={() => setFocused(true)}
+                  onFocus={() => setFocused(true)}
+                  focused={focused.toString()}
+                />
+              </div>
             </div>
-          </div>
-          <button>Submit</button>
-        </form>
+            <button>Submit</button>
+          </form>
+        )}
       </div>
     </>
   );
